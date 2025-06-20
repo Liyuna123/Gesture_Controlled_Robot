@@ -8,7 +8,7 @@ The robot is controlled by an Arduino hand gesture control that can be worn on t
 
 <!--- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**-->
 
-![Schematic Image1](logo.svg)
+![Headstone Image](logo.svg)
   
 <!--# Final Milestone
 
@@ -49,7 +49,7 @@ For your first milestone, describe what your project is and how you plan to buil
 - What your plan is to complete your project-->
 
 # Schematics 
-![Headstone Image](circuit_image.png)
+![Schematic Image1](circuit_image.png)
 <!--Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
 <!--# Code
