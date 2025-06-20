@@ -1,4 +1,4 @@
-# Gesture Controlled Robot
+ic# Gesture Controlled Robot
 The robot is controlled by an Arduino hand gesture control that can be worn on the hand. The control works through bluetooth, and the robot can turn in all directions with its 4 wheels.
 
 
@@ -8,7 +8,7 @@ The robot is controlled by an Arduino hand gesture control that can be worn on t
 
 <!--- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**-->
 
-![Headstone Image](logo.svg)
+![Schematic Image1](logo.svg)
   
 <!--# Final Milestone
 
