@@ -49,7 +49,10 @@ For your first milestone, describe what your project is and how you plan to buil
 - What your plan is to complete your project-->
 
 # Schematics 
-![Schematic Image1](circuit_image.png)
+Here is the digital version of the schematics of my controller.
+<div style="position: relative; width: 100%; padding-top: calc(max(56.25%, 400px));">
+  <iframe src="https://app.cirkitdesigner.com/project/8f149cdc-0c70-488b-bb97-79c7e6b5062e?view=interactive_preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+</div>
 <!--Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
 <!--# Code
