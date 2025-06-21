@@ -36,13 +36,22 @@ For your second milestone, explain what you've worked on since your previous mil
 - Previous challenges you faced that you overcame
 - What needs to be completed before your final milestone-->
 
-<!--# First Milestone
+# First Milestone
 
 <!--**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**-->
 <!---youtube video below -->
-<!---<iframe width="560" height="315" src="https://www.youtube.com/embed/CaCazFBhYKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtu.be/_bARJUOrQyM?si=qq_ZBB3hF5m-y1C7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-For your first milestone, describe what your project is and how you plan to build it. You can include:
+**Description:**
+For my first milestone, I built the base of the robot. It includes 4 DC motors, a drive motor, 4 AAA batteries, and an Arduino Uno. The first step was to secure the DC motors and add a wheel to them. Then, I soldered wires to them which connected to the motor driver. Finally, I attached the battery case to the motor driver and the Arduino Uno to the motor driver with male to female wires.
+
+**Challenges:**
+The first challenge I faced was when attaching the wheel to the DC motors. One of them would not stay, so I solved the issue by adding electrical tape to secure it. The second issue I faced was with soldering the wires to the motors. It was important to be careful when doing that because the soldering iron melted the plastic multiple times.
+
+**Next Step:**
+For the next milestone, I will be creating the controller and testing to see that each component works individually.
+
+<!--For your first milestone, describe what your project is and how you plan to build it. You can include:
 - An explanation about the different components of your project and how they will all integrate together
 - Technical progress you've made so far
 - Challenges you're facing and solving in your future milestones
@@ -52,6 +61,10 @@ For your first milestone, describe what your project is and how you plan to buil
 Here is the digital version of the schematics of my controller.
 <div style="position: relative; width: 100%; padding-top: calc(max(56.25%, 400px));">
   <iframe src="https://app.cirkitdesigner.com/project/8f149cdc-0c70-488b-bb97-79c7e6b5062e?view=interactive_preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
+</div>
+Here is the digital version of the schematics of my robot.
+<div style="position: relative; width: 100%; padding-top: calc(max(56.25%, 400px));">
+  <iframe src="https://app.cirkitdesigner.com/project/8eff8dc9-2f8a-4b31-87ab-973624e91911?view=interactive_preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>
 </div>
 <!--Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
