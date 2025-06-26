@@ -152,14 +152,14 @@ analogWrite(enB, Speed); // Write The Duty Cycle 0 to 255 Enable Pin B for Motor
 delay(50);
 }
 
-void forword(){  //forword
+void forward(){  //forward
 digitalWrite(in1, HIGH); //Right Motor forward Pin 
 digitalWrite(in2, LOW);  //Right Motor backward Pin 
 digitalWrite(in3, LOW);  //Left Motor backward Pin 
 digitalWrite(in4, HIGH); //Left Motor forward Pin 
 }
 
-void backword(){ //backword
+void backward(){ //backward
 digitalWrite(in1, LOW);  //Right Motor forward Pin 
 digitalWrite(in2, HIGH); //Right Motor backward Pin 
 digitalWrite(in3, HIGH); //Left Motor backward Pin 
