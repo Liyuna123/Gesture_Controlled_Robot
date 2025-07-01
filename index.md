@@ -22,6 +22,19 @@ For your final milestone, explain the outcome of your project. Key details to in
 - A summary of key topics you learned about
 - What you hope to learn in the future after everything you've learned at BSE--->
 
+# Second Milestone
+
+<!--<iframe width="560" height="315" src="https://www.youtube.com/embed/JsxYq6JUvng?si=LoC-VAoXQ2ImqSWc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+
+**Description:**
+For my third milestone, I connected the controller to the 
+
+**Challenges:**
+The first challenge I faced was...
+
+**Next Step:**
+For the next milestone, I will be adding my modifications
+
 
 # Second Milestone
 
