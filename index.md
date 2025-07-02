@@ -184,7 +184,7 @@ int Speed = 150; //Write The Duty Cycle 0 to 255 Enable Pins for Motor Speed
 void setup() { // put your setup code here, to run once
 
 Serial.begin(9600); // start serial communication at 9600bps
-BT_Serial.begin(9600); 
+BT_Serial.begin(38400); 
 
 pinMode(enA, OUTPUT); // declare as output for L298 Pin enA 
 pinMode(in1, OUTPUT); // declare as output for L298 Pin in1 
@@ -201,11 +201,25 @@ bt_data = BT_Serial.read();
 Serial.println(bt_data);          
 }
   
-     if(bt_data == 'f'){forward();  Speed=180;}  // if the bt_data is 'f' the DC motor will go forward
-else if(bt_data == 'b'){backward(); Speed=180;}  // if the bt_data is 'b' the motor will go backward
-else if(bt_data == 'l'){turnLeft(); Speed=250;}  // if the bt_data is 'l' the motor will turn left
-else if(bt_data == 'r'){turnRight();Speed=250;} // if the bt_data is 'r' the motor will turn right
-else if(bt_data == 's'){Stop(); }     // if the bt_data 's' the motor will Stop
+if(bt_data == 'f'){
+      forward();  
+      Speed=180;// if the bt_data is 'f' the DC motor will go forward
+      }  
+else if(bt_data == 'b'){
+      backward(); 
+      Speed=180; // if the bt_data is 'b' the motor will go backward
+      }  
+else if(bt_data == 'l'){
+      turnLeft(); 
+      Speed=250; // if the bt_data is 'l' the motor will turn left
+      }  
+else if(bt_data == 'r'){
+      turnRight();
+      Speed=250; // if the bt_data is 'r' the motor will turn right
+      } 
+else if(bt_data == 's'){
+      Stop();  // if the bt_data 's' the motor will Stop
+      }   
 
 analogWrite(enA, Speed); // Write The Duty Cycle 0 to 255 Enable Pin A for Motor1 Speed 
 analogWrite(enB, Speed); // Write The Duty Cycle 0 to 255 Enable Pin B for Motor2 Speed 
@@ -248,6 +262,8 @@ digitalWrite(in3, LOW); //Left Motor backward Pin
 digitalWrite(in4, LOW); //Left Motor forward Pin 
 }
 
+}
+
 
 ```
 Here is the code for my hand control.
@@ -265,7 +281,7 @@ int flag=0;
 void setup () {// put your setup code here, to run once
 
 Serial.begin(9600); // start serial communication at 9600bps
-BT_Serial.begin(9600); 
+BT_Serial.begin(38400); 
 
 // Initialize interface to the MPU6050
 Wire.begin();
@@ -280,14 +296,31 @@ delay(500);
 void loop () {
 Read_accelerometer(); // Read MPU6050 accelerometer
 
-if(AcX<60  && flag==0){flag=1; BT_Serial.write('f');}
-if(AcX>130 && flag==0){flag=1; BT_Serial.write('b');}
+if(AcX<60 ){
+      //flag=1;
+      BT_Serial.write('f');
+      Serial.println('f');
+      }
+if(AcX>130){
+     // flag=1; 
+      BT_Serial.write('b');
+      Serial.println('b');}
       
-if(AcY<60  && flag==0){flag=1; BT_Serial.write('l'); }
-if(AcY>130 && flag==0){flag=1; BT_Serial.write('r');}
+if(AcY<60){
+     // flag=1; 
+      BT_Serial.write('l'); 
+      Serial.println('l');
+      }
+if(AcY>130){
+     // flag=1; 
+      BT_Serial.write('r');
+      Serial.println('r');
+      }
   
-if((AcX>70)&&(AcX<120)&&(AcY>70)&&(AcY<120)&&(flag==1)){flag=0;
+if((AcX>70)&&(AcX<120)&&(AcY>70)&&(AcY<120)){
+      flag=0;
 BT_Serial.write('s');
+Serial.println('s');
 }
 
 delay(100);  
