@@ -85,8 +85,8 @@ Here is the digital version of the schematics of my robot.
 
 # Code
 <!--Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. -->
-##Milestone 2 code
-###Blink Test 
+## Milestone 2 code
+### Blink Test 
 
 This test was used to check that the Arduinos are working
 ```c++
@@ -103,7 +103,7 @@ void loop() {
   delay(1000);                      // wait for a second
 }
 ```
-###AT Mode Code 
+### AT Mode Code 
 
 This was the code used while in AT mode.
 ```c++
@@ -122,7 +122,7 @@ void loop() {
 }
 
 ```
-###Robot Testing Code
+### Robot Testing Code
 
 This is the code I used to test the robot motor driver and motors to make sure they work and are synced in the right direction.
 ```c++
@@ -173,9 +173,9 @@ void loop() {
  
 }
 ```
-##Milestone 3 code
+## Milestone 3 code
 
-###Accelerometer and Gyroscope Testing Code 
+### Accelerometer and Gyroscope Testing Code 
 
 This is the code I used to test that the Accelerometer is able to read basic information given. 
 Here is the code of my robot.
@@ -299,7 +299,7 @@ void loop() {
 }
 ```
 
-##Final Robot Code
+## Final Robot Code
 
 This is my final milestone's code for the robot. 
 ```c++
@@ -401,7 +401,7 @@ digitalWrite(in4, LOW); //Left Motor forward Pin
 
 
 ```
-##Final Controller Code
+## Final Controller Code
 
 This is the final code for my hand controller.
 ```c++
