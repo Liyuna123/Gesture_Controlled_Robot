@@ -33,20 +33,16 @@ For my third milestone, I had the two components work together. The first step w
 ## Challenges
 
 ### Accelerometer
-
 I faced an issue with the accelerometer showing 127 on all three axes, which was inaccurate. This means the data was not being recieved by the Arduino, meaning wiring was wrong. I fixed this by first switching out the accelerometer, which didn't work. Therefore, I switched the wiring so that SD pin would connect to SC pin of Arduino, not SD. This fixed it.
 ### Code
 
 **Flags:**
-
 I firsted changed the code to not include flags, which can be set to 1 and 0. This was unnecessary, so I removed it. This didn't solve the problem, though, so I decided to debug it using the serial monitor. 
 
 **Serial Monitor:**
-
 By adding a line that says "Serial.println('xy')," I was able to see what data was going through and which caused the problem. I first did this for the controller. I set the serial communication rate to 9600 bps, and the commands printed in the serial monitor, showing data from the accelerometer was going through. Then, I observed the serial monitor in the code for the robot, and it appeared scrambled and unreadable. Therefore, I changed the BT rate, which allows commmuncation with the device, which is the HC-05 in my case. I changed it to 38400 because I learned that it is the baud rate of the HC-05. 
 
 ## Next Step
-
 For the next milestone, I will be adding my modifications.
 
 
