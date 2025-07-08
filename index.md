@@ -95,6 +95,12 @@ I found that the inconsistency was because the motors had to be operated by the 
 
 For the next milestone, I will be adding my sending my code and having the robot and controller work together.
 
+## Image
+
+![Image2](IMG_2186.HEIC)
+![Image2](IMG_2073.HEIC)
+
+
 
 # First Milestone
 
@@ -120,6 +126,9 @@ The final issue I faced was when soldering the wires to each other to connect to
 ## Next Step
 
 For the next milestone, I will be creating the controller and testing to see that each component works individually.
+
+## Image
+![Image1](IMG_2189.HEIC)
 
 <!--For your first milestone, describe what your project is and how you plan to build it. You can include:
 - An explanation about the different components of your project and how they will all integrate together
