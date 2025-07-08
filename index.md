@@ -27,7 +27,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/JsxYq6JUvng?si=LoC-VAoXQ2ImqSWc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
 
 **Description:**
-For my third milestone, I had the two components work together. The first step was to make sure the bluetooth works, which I had done in the previous milestone. The rest was primarily in the code, which I have 2 sets of, one for the robot, and one for the controller. One of the most importants lines for the controller code are for the accelerometer. The code for the accelerometer sets conditions so that if the angle at which the accelerometer is at is greater than a certain value, it is considered going a certain direction depending on which axis. It then sends a short message to the robot through bluetooth. The code for the robot includes codes that set the speed and commands to set the direction. Based on the commands recieved from the HC-05, the robot would go in the direction given from the controller. The speed is set and is not changed by the accelerometer. After uploading the code, I was able to use the serial monitor to see what data was being recieved.
+For my third milestone, I had the two components work together. The first step was to make sure the bluetooth works, which I had done in the previous milestone. The rest was primarily in the code, which I have 2 sets of, one for the robot, and one for the controller. One of the most importants lines for the controller code are for the accelerometer. The code for the accelerometer sets conditions so that if the angle at which the accelerometer is at is greater than a certain value, it is considered going a certain direction depending on which axis. It then sends a short message to the robot through bluetooth. The code for the robot includes codes that set the speed and commands to set the direction. Based on the commands recieved from the HC-05, the robot would go in the direction given from the controller. The speed, on the other hand, is set and is not changed by the accelerometer. After uploading the code, I was able to use the serial monitor to see what data was being recieved.
 
 **Challenges:**
 The first time I uploaded the code, I faced multiple challenges. I firsted changed the code to not include flags, which can be set to 1 and 0. This was unnecessary, so I removed it. This didn't solve the problem, though, so I decided to debug it using the serial monitor. By adding a line that says "Serial.println('xy')," I was able to see what data was going through and which caused the problem. I first did this for the controller. I set the serial communication rate to 9600 bps, and the commands printed in the serial monitor, showing data from the accelerometer was going through. Then, I observed the serial monitor in the code for the robot, and it appeared scrambled and unreadable. Therefore, I changed the BT rate, which allows commmuncation with the device, which is the HC-05 in my case. I changed it to 38400 because I learned that it is the baud rate of the HC-05. 
@@ -85,7 +85,10 @@ Here is the digital version of the schematics of my robot.
 
 # Code
 <!--Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. -->
-Here is the code to test that the Arduino is working.
+##Milestone 2 code
+###Blink Test 
+
+This test was used to check that the Arduinos are working
 ```c++
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
@@ -100,7 +103,9 @@ void loop() {
   delay(1000);                      // wait for a second
 }
 ```
-Here is the code I used while in AT mode.
+###AT Mode Code 
+
+This was the code used while in AT mode.
 ```c++
 #include <SoftwareSerial.h> //built in library to customize RX and TX pins
 SoftwareSerial BTserial(2, 3); // RX = 2, TX = 3
@@ -117,7 +122,9 @@ void loop() {
 }
 
 ```
-Here is the code I used to test the robot.
+###Robot Testing Code
+
+This is the code I used to test the robot motor driver and motors to make sure they work and are synced in the right direction.
 ```c++
 // ----- Pin assignments -----
 const int ENA = 10;   // left-side speed (PWM)
@@ -166,7 +173,135 @@ void loop() {
  
 }
 ```
+##Milestone 3 code
+
+###Accelerometer and Gyroscope Testing Code 
+
+This is the code I used to test that the Accelerometer is able to read basic information given. 
 Here is the code of my robot.
+```c++
+// Basic demo for accelerometer readings from Adafruit MPU6050
+
+#include <Adafruit_MPU6050.h>
+#include <Adafruit_Sensor.h>
+#include <Wire.h>
+
+Adafruit_MPU6050 mpu;
+
+void setup(void) {
+  Serial.begin(115200);
+  while (!Serial)
+    delay(10); // will pause Zero, Leonardo, etc until serial console opens
+
+  Serial.println("Adafruit MPU6050 test!");
+
+  // Try to initialize!
+  if (!mpu.begin()) {
+    Serial.println("Failed to find MPU6050 chip");
+    while (1) {
+      delay(10);
+    }
+  }
+  Serial.println("MPU6050 Found!");
+
+  mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
+  Serial.print("Accelerometer range set to: ");
+  switch (mpu.getAccelerometerRange()) {
+  case MPU6050_RANGE_2_G:
+    Serial.println("+-2G");
+    break;
+  case MPU6050_RANGE_4_G:
+    Serial.println("+-4G");
+    break;
+  case MPU6050_RANGE_8_G:
+    Serial.println("+-8G");
+    break;
+  case MPU6050_RANGE_16_G:
+    Serial.println("+-16G");
+    break;
+  }
+  mpu.setGyroRange(MPU6050_RANGE_500_DEG);
+  Serial.print("Gyro range set to: ");
+  switch (mpu.getGyroRange()) {
+  case MPU6050_RANGE_250_DEG:
+    Serial.println("+- 250 deg/s");
+    break;
+  case MPU6050_RANGE_500_DEG:
+    Serial.println("+- 500 deg/s");
+    break;
+  case MPU6050_RANGE_1000_DEG:
+    Serial.println("+- 1000 deg/s");
+    break;
+  case MPU6050_RANGE_2000_DEG:
+    Serial.println("+- 2000 deg/s");
+    break;
+  }
+
+  mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
+  Serial.print("Filter bandwidth set to: ");
+  switch (mpu.getFilterBandwidth()) {
+  case MPU6050_BAND_260_HZ:
+    Serial.println("260 Hz");
+    break;
+  case MPU6050_BAND_184_HZ:
+    Serial.println("184 Hz");
+    break;
+  case MPU6050_BAND_94_HZ:
+    Serial.println("94 Hz");
+    break;
+  case MPU6050_BAND_44_HZ:
+    Serial.println("44 Hz");
+    break;
+  case MPU6050_BAND_21_HZ:
+    Serial.println("21 Hz");
+    break;
+  case MPU6050_BAND_10_HZ:
+    Serial.println("10 Hz");
+    break;
+  case MPU6050_BAND_5_HZ:
+    Serial.println("5 Hz");
+    break;
+  }
+
+  Serial.println("");
+  delay(100);
+}
+
+void loop() {
+
+  /* Get new sensor events with the readings */
+  sensors_event_t a, g, temp;
+  mpu.getEvent(&a, &g, &temp);
+
+  /* Print out the values */
+  Serial.print("Acceleration X: ");
+  Serial.print(a.acceleration.x);
+  Serial.print(", Y: ");
+  Serial.print(a.acceleration.y);
+  Serial.print(", Z: ");
+  Serial.print(a.acceleration.z);
+  Serial.println(" m/s^2");
+
+  Serial.print("Rotation X: ");
+  Serial.print(g.gyro.x);
+  Serial.print(", Y: ");
+  Serial.print(g.gyro.y);
+  Serial.print(", Z: ");
+  Serial.print(g.gyro.z);
+  Serial.println(" rad/s");
+
+  Serial.print("Temperature: ");
+  Serial.print(temp.temperature);
+  Serial.println(" degC");
+
+  Serial.println("");
+  delay(500);
+}
+```
+
+##Final Robot Code
+
+This is my final milestone's code for the robot. 
 ```c++
 #include <SoftwareSerial.h>
 SoftwareSerial BT_Serial(2, 3); // RX, TX
@@ -266,7 +401,9 @@ digitalWrite(in4, LOW); //Left Motor forward Pin
 
 
 ```
-Here is the code for my hand control.
+##Final Controller Code
+
+This is the final code for my hand controller.
 ```c++
 #include <SoftwareSerial.h>
 SoftwareSerial BT_Serial(2, 3); // RX, TX
