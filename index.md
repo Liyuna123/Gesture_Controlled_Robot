@@ -26,13 +26,27 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/JsxYq6JUvng?si=LoC-VAoXQ2ImqSWc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
 
-**Description:**
+## Description
+
 For my third milestone, I had the two components work together. The first step was to make sure the bluetooth works, which I had done in the previous milestone. The rest was primarily in the code, which I have 2 sets of, one for the robot, and one for the controller. One of the most importants lines for the controller code are for the accelerometer. The code for the accelerometer sets conditions so that if the angle at which the accelerometer is at is greater than a certain value, it is considered going a certain direction depending on which axis. It then sends a short message to the robot through bluetooth. The code for the robot includes codes that set the speed and commands to set the direction. Based on the commands recieved from the HC-05, the robot would go in the direction given from the controller. The speed, on the other hand, is set and is not changed by the accelerometer. After uploading the code, I was able to use the serial monitor to see what data was being recieved.
 
-**Challenges:**
-The first time I uploaded the code, I faced multiple challenges. I firsted changed the code to not include flags, which can be set to 1 and 0. This was unnecessary, so I removed it. This didn't solve the problem, though, so I decided to debug it using the serial monitor. By adding a line that says "Serial.println('xy')," I was able to see what data was going through and which caused the problem. I first did this for the controller. I set the serial communication rate to 9600 bps, and the commands printed in the serial monitor, showing data from the accelerometer was going through. Then, I observed the serial monitor in the code for the robot, and it appeared scrambled and unreadable. Therefore, I changed the BT rate, which allows commmuncation with the device, which is the HC-05 in my case. I changed it to 38400 because I learned that it is the baud rate of the HC-05. 
+## Challenges
 
-**Next Step:**
+### Accelerometer
+
+I faced an issue with the accelerometer showing 127 on all three axes, which was inaccurate. This means the data was not being recieved by the Arduino, meaning wiring was wrong. I fixed this by first switching out the accelerometer, which didn't work. Therefore, I switched the wiring so that SD pin would connect to SC pin of Arduino, not SD. This fixed it.
+### Code
+
+**Flags:**
+
+I firsted changed the code to not include flags, which can be set to 1 and 0. This was unnecessary, so I removed it. This didn't solve the problem, though, so I decided to debug it using the serial monitor. 
+
+**Serial Monitor:**
+
+By adding a line that says "Serial.println('xy')," I was able to see what data was going through and which caused the problem. I first did this for the controller. I set the serial communication rate to 9600 bps, and the commands printed in the serial monitor, showing data from the accelerometer was going through. Then, I observed the serial monitor in the code for the robot, and it appeared scrambled and unreadable. Therefore, I changed the BT rate, which allows commmuncation with the device, which is the HC-05 in my case. I changed it to 38400 because I learned that it is the baud rate of the HC-05. 
+
+## Next Step
+
 For the next milestone, I will be adding my modifications.
 
 
@@ -40,13 +54,41 @@ For the next milestone, I will be adding my modifications.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/JsxYq6JUvng?si=LoC-VAoXQ2ImqSWc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-**Description:**
+## Description
+
 For my second milestone, I built the hand controller of the robot and tested each component individually. The hand controller includes and Arduino Nano, HC-05 bluetooth module, and an accelerometer. The first step was put the Arduino Nano, accelerometer, and HC-05 in place. Then, I attached the battery with male header pins. Finally, I attached everything with hard jump wires and male to male jumper wires. On the robot controller, only the TX and RX pin on the HC-05 should be connected to the 2 and 3 (RX and TX) pins on the Arduino Nano. The SCL pin on the accelerometer should be connected to the A4 pin, and the SDA pin should be connected to A5. The next steps were to connect the two bluetooth modules and upload the code. While doing this, I made sure that the EN pin is connected to the 3.3V on the Arduino. I was able to pair the modules by first plugging the Arduinos to my laptop, then plugging the HC-05 into the Arduino. Then, I proceeded to open the Serial Monitor in Arduino IDE and send commands to assign each module as either the slave or master. A few commands include AT, which checks that the HC-05 is responsive, AT+ROLE, which assigns the HC-05 a role, AT+CMODE, which allows the master to bind to either any or one specific HC-05, and AT+BIND, which is used to bind the master to the slave. Once they were paired, I unplugged the EN pin. For the code, I used 3 seperate sets, which were all written in C++. The first one was very simple and a test to see that the Arduino boards were responsive. It allowed the light on the board to blink on and off when requested. The second code was to pair the HC-05s. It was also simple with code that set the RX and TX pins to 2 and 3. Because it was simple, I could isolate the issue to the two bluetooth modules instead of my code. Finally, the last code was to test the car and have it drive back and forth.
 
-**Challenges:**
-The first challenge I faced was when first powering on the controller and body. The first batteries I was using were 1.2 V batteries, which I used 4 of. This totalled to 4.8 V, which was enough to power my motor driver and Arduino Uno, but not the HC-05. I isolated the issue by using a multimeter to measure how much power was given to the HC-05 when the Arduino Uno was plugged in to  my laptop, which powered on the HC-05. The multimeter showed around 6.5 volts, which was much more than the 4.8 that I was given. I decided to switch the batteries to 1.5 V AA batteries which totalled to 6V. While this wasn't as much power as my computer, it was still enough to allow the HC-05 to power on. The second challenge I faced was when pairing the two HC-05. This was my biggest challenge in the project so far, as it took me a while to figure out. The first issue I faced when sending AT commands. At first, it was unresponsive because the serial baud rate was less than it needed to be. I thought it was because the Arduino Uno prefered 5V, while the bluetooth module prefered 3.3V. I was going to use resistors, but I decided against it because it turned out to be unnecessary. I found out it was the baud rate that was the issue, and, after fixing that, I was able to send the AT commands. That was when I faced my second issue, which was the two modules not pairing together. The commands were correct, so I decided to redo my wiring to make sure it was correct. This fixed the issue. The third challenge I faced was while working on pairing the two modules, the previously soldered wires connecting the Arduino Nano to the battery fell apart. I had to resolder this later in the project. The fourth challenge was when uploading the code. The first issue with uploading was with the processor. I had set the processor on my laptop when uploading my code was the ATmega328P (Old Bootloader). After playing around with the settings, I found out that the processor for the Arduino Nano was suppposed to be set to ATmega328P. The second issue I faced while uploading the code was that code is uploaded to the 0 and 1 pins on the Arduino, which is otherwise known as the pins set to be TX and RX. Therefore, while uploading the code, I faced an issue. To solve it, I used the SoftwareSerial library and set my RX and TX pins to 2 and 3. The final challenge was with the motors. Only one side was working, and it was inconsistent. I discovered that the inconsistency was because the motors had to be operated by the battery and not the laptop because of my connections. For the part where only one side was working, I used a multimeter to see that one side had 0V going through it. I fixed this by resoldering everything on that side. 
+## Challenges
 
-**Next Step:**
+### Powering Controller and body
+
+The first challenge I faced was when first powering on the controller and body. The first batteries I was using were 1.2 V batteries, which I used 4 of. This totalled to 4.8 V, which was enough to power my motor driver and Arduino Uno, but not the HC-05. I isolated the issue by using a multimeter to measure how much power was given to the HC-05 when the Arduino Uno was plugged in to  my laptop, which powered on the HC-05. The multimeter showed around 6.5 volts, which was much more than the 4.8 that I was given. I decided to switch the batteries to 1.5 V AA batteries which totalled to 6V. While this wasn't as much power as my computer, it was still enough to allow the HC-05 to power on. 
+
+### Pairing HC-05s
+
+The second challenge I faced was when pairing the two HC-05. This was my biggest challenge in the project so far, as it took me a while to figure out. The first issue I faced when sending AT commands. At first, it was unresponsive because the serial baud rate was less than it needed to be. I thought it was because the Arduino Uno prefered 5V, while the bluetooth module prefered 3.3V. I was going to use resistors, but I decided against it because it turned out to be unnecessary. I found out it was the baud rate that was the issue, and, after fixing that, I was able to send the AT commands. That was when I faced my second issue, which was the two modules not pairing together. The commands were correct, so I decided to redo my wiring to make sure it was correct. This fixed the issue. 
+
+### Re-Soldering wires
+
+The third challenge I faced was while working on pairing the two modules, the previously soldered wires connecting the Arduino Nano to the battery fell apart. I had to resolder this later in the project. 
+
+### Uploading Code
+
+**Processor:** 
+The first issue with uploading was with the processor. I had set the processor on my laptop when uploading my code was the ATmega328P (Old Bootloader). After playing around with the settings, I found out that the processor for the Arduino Nano was suppposed to be set to ATmega328P. 
+**RX and TX pins:**
+The second issue I faced while uploading the code was that code is uploaded to the 0 and 1 pins on the Arduino, which is otherwise known as the pins set to be TX and RX. Therefore, while uploading the code, I faced an issue. To solve it, I used the SoftwareSerial library and set my RX and TX pins to 2 and 3. 
+
+### DC Motors
+
+**Only One Side working:** 
+For a while, only one side was working. I used a multimeter and found that 0V were reaching the motors on that side. I fixed this by resoldering everything on that side.
+
+**Inconsistency:**
+I found that the inconsistency was because the motors had to be operated by the battery because of my connections.
+
+## Next Step
+
 For the next milestone, I will be adding my sending my code and having the robot and controller work together.
 
 
@@ -56,13 +98,26 @@ For the next milestone, I will be adding my sending my code and having the robot
 <!---youtube video below -->
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_bARJUOrQyM?si=nMIZuDmcr8LgFZNh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-**Description:**
+## Description
+
 For my first milestone, I built the base of the robot. It includes 4 DC motors, a drive motor, 4 AAA batteries, and an Arduino Uno. The first step was to secure the DC motors and add a wheel to them. Then, I soldered wires to them which connected to the motor driver. Finally, I attached the battery case to the motor driver and the Arduino Uno to the motor driver with male to female wires. One of the most important things I had to do in Milestone 1 was being careful with the wire connections. On the robot body, the VCC on the HC-05 should be connected to the 5V on the Arduino Uno, the two ground pins should be connected, the TX pin should be connected to the RX pin, and vice versa. The ENA, In1, IN2, IN3, IN4, and ENB pins on the motor driver should be connected to the D10, D9, D8, D7, D6, and D5 pins on the Arduino Uno. On the robot controller, only the TX and RX pin on the HC-05 should be connected to the RX and TX pins on the Arduino Nano. The SCL pin on the accelerometer should be connected to the A4 pin, and the SDA pin should be connected to A5.
 
-**Challenges:**
-The first challenge I faced was when attaching the wheel to the DC motors. One of them would not stay, so I solved the issue by adding electrical tape to secure it. The second issue I faced was with soldering the wires to the motors. It was important to be careful when doing that because the soldering iron melted the plastic multiple times. The final issue I faced was when soldering the wires to each other to connect to the motor driver. Because they were supposed to be screwed in, it was difficult to control the amount of solder on the wires as to be sure that they can still be screwed in. I had to remove solder multiple times.
+## Challenges
 
-**Next Step:**
+### Attaching wheel to DC motors
+
+The first challenge I faced was when attaching the wheel to the DC motors. One of them would not stay, so I solved the issue by adding electrical tape to secure it. 
+
+### Soldering wires to motors
+
+The second issue I faced was with soldering the wires to the motors. It was important to be careful when doing that because the soldering iron melted the plastic multiple times. 
+
+### Soldering wires to motor driver
+
+The final issue I faced was when soldering the wires to each other to connect to the motor driver. Because they were supposed to be screwed in, it was difficult to control the amount of solder on the wires as to be sure that they can still be screwed in. I had to remove solder multiple times.
+
+## Next Step
+
 For the next milestone, I will be creating the controller and testing to see that each component works individually.
 
 <!--For your first milestone, describe what your project is and how you plan to build it. You can include:
