@@ -79,8 +79,10 @@ The second challenge I faced was when pairing the two HC-05. This was my biggest
 The third challenge I faced was while working on pairing the two modules, the previously soldered wires connecting the Arduino Nano to the battery fell apart. I had to resolder this later in the project. 
 
 ### Uploading Code
+
 **Processor:** 
 The first issue with uploading was with the processor. I had set the processor on my laptop when uploading my code was the ATmega328P (Old Bootloader). After playing around with the settings, I found out that the processor for the Arduino Nano was suppposed to be set to ATmega328P. 
+
 **RX and TX pins:**
 The second issue I faced while uploading the code was that code is uploaded to the 0 and 1 pins on the Arduino, which is otherwise known as the pins set to be TX and RX. Therefore, while uploading the code, I faced an issue. To solve it, I used the SoftwareSerial library and set my RX and TX pins to 2 and 3. 
 
@@ -138,10 +140,10 @@ For the next milestone, I will be creating the controller and testing to see tha
 
 # Schematics 
 Here is the digital version of the schematics of my controller.
-![Controller schematic](schematic2.png)
+![Controller schematic](Schematic2.png)
 
 Here is the digital version of the schematics of my robot.
-![Robot schematic](schematic1.svg)
+![Robot schematic](schematic1.png)
 </div>
 <!--Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
