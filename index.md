@@ -3,7 +3,7 @@ xMy project is a gesture controller robot. The robot is controlled by an Arduino
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
-| Liyuna C | Basis Independent Silicon Valley | N/A | Incoming 8th Grader
+| Liyuna C | Basis Independent Silicon Valley | Mechanical Engineering | Incoming 8th Grader
 
 <!--- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**-->
 
