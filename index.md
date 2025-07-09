@@ -32,12 +32,13 @@ For my third milestone, I had the two components work together. The first step w
 ## How it works
 
 **MPU6050:**
-For the hand controller, a key component is the MPU6050, which I have also referred to as the accelerometer. The MPU6050 is capable of measuring an object's acceleration, temperature, and angular velocity. In my project, its primary use is measure the angle at which it is being held at. This is extremely important because my robot is controlled by gestures. The accelerometer works by detecting the force that is being put on the object. My code allows this data to be converted to a single letter of the following: f (forward), b (backward), r (right), l(left), or s(stop). This information is then sent to the robot through the HC-05, and the robot interprets the letter and decides which direction to go.
+For the hand controller, a key component is the MPU6050, which I have also referred to as the accelerometer. The MPU6050 has four main components, the gyroscope, accelerometer, temperature sensor, and digital motion processor, and is capable of measuring an object's acceleration, temperature, and angular velocity. In my project, its primary use is measure the angle at which it is being held at. This is extremely important because my robot is controlled by gestures. The accelerometer works by detecting the force that is being put on the object. My code allows this data to be converted to a single letter of the following: f (forward), b (backward), r (right), l(left), or s(stop). This information is then sent to the robot through the HC-05, and the robot interprets the letter and decides which direction to go.
 
 ## Challenges
 
-### Accelerometer
-I faced an issue with the accelerometer showing 127 on all three axes, which was inaccurate. This means the data was not being recieved by the Arduino, meaning wiring was wrong. I fixed this by first switching out the accelerometer, which didn't work. Therefore, I switched the wiring so that SD pin would connect to SC pin of Arduino, not SD. This fixed it.
+### MPU6050
+I faced an issue with the accelerometer showing 127 on all three axes, which was inaccurate. This means the data was not being recieved by the Arduino, meaning wiring was wrong. I fixed this by first switching out the accelerometer, which didn't work. Therefore, I switched the wiring so that SD pin would connect to SC pin of Arduino, not SD. This is important because the SCL pin is the Serial Clock Line, and it tells Arduino it is ready to send data. On the other hand, the SDA is Serial Data Line, and it sends data. Wiring is important because the SC pin has to communicate that it is ready to send data before the SD pin sends it over.
+This fixed it.
 ### Code
 
 **Flags:**
@@ -77,7 +78,7 @@ The HC-05s work by, as said earlier, setting a master and slave module. Once the
 The first challenge I faced was when first powering on the controller and body. The first batteries I was using were 1.2 V batteries, which I used 4 of. This totalled to 4.8 V, which was enough to power my motor driver and Arduino Uno, but not the HC-05. I isolated the issue by using a multimeter to measure how much power was given to the HC-05 when the Arduino Uno was plugged in to  my laptop, which powered on the HC-05. The multimeter showed around 6.5 volts, which was much more than the 4.8 that I was given. I decided to switch the batteries to 1.5 V AA batteries which totalled to 6V. While this wasn't as much power as my computer, it was still enough to allow the HC-05 to power on. 
 
 ### Pairing HC-05s
-The second challenge I faced was when pairing the two HC-05. This was my biggest challenge in the project so far, as it took me a while to figure out. The first issue I faced when sending AT commands. At first, it was unresponsive because the serial baud rate was less than it needed to be. I thought it was because the Arduino Uno prefered 5V, while the bluetooth module prefered 3.3V. I was going to use resistors, but I decided against it because it turned out to be unnecessary. I found out it was the baud rate that was the issue, and, after fixing that, I was able to send the AT commands. That was when I faced my second issue, which was the two modules not pairing together. The commands were correct, so I decided to redo my wiring to make sure it was correct. This fixed the issue. 
+The second challenge I faced was when pairing the two HC-05. This was my biggest challenge in the project so far, as it took me a while to figure out. The first issue I faced when sending AT commands. At first, it was unresponsive because the serial baud rate was less than it needed to be. I thought it was because the Arduino Uno prefered 5V, while the bluetooth module prefered 3.3V. I was going to use resistors, but I decided against it because it turned out to be unnecessary. I found out it was the baud rate that was the issue, and, after fixing that, I was able to send the AT commands. That was when I faced my second issue, which was the two modules not pairing together. The commands were correct, so I decided to redo my wiring to make sure it was correct. I found out that the RX and TX pins were swapped. This is important because the RX pin is responsible for recieving, while the TX pin is responsible for transmitting. Therefore, if both pins are transmitting, there will be an error. Fixing this solved the issue.
 
 ### Re-Soldering wires
 The third challenge I faced was while working on pairing the two modules, the previously soldered wires connecting the Arduino Nano to the battery fell apart. I had to resolder this later in the project. 
@@ -374,95 +375,136 @@ This is my final milestone's code for the robot.
 #include <SoftwareSerial.h>
 SoftwareSerial BT_Serial(2, 3); // RX, TX
 
-#define enA 10//Enable1 L298 Pin enA 
-#define in1 9 //Motor1  L298 Pin in1 
-#define in2 8 //Motor1  L298 Pin in1 
-#define in3 7 //Motor2  L298 Pin in1 
-#define in4 6 //Motor2  L298 Pin in1 
-#define enB 5 //Enable2 L298 Pin enB 
+
+
+
+#define enA 10//Enable1 L298 Pin enA
+#define in1 9 //Motor1  L298 Pin in1
+#define in2 8 //Motor1  L298 Pin in1
+#define in3 7 //Motor2  L298 Pin in1
+#define in4 6 //Motor2  L298 Pin in1
+#define enB 5 //Enable2 L298 Pin enB
+
+
+
 
 char bt_data; // variable to receive data from the serial port
-int Speed = 150; //Write The Duty Cycle 0 to 255 Enable Pins for Motor Speed  
+int Speed = 150; //Write The Duty Cycle 0 to 255 Enable Pins for Motor Speed
+
+
+
 
 void setup() { // put your setup code here, to run once
 
-Serial.begin(9600); // start serial communication at 9600bps
-BT_Serial.begin(38400); 
 
-pinMode(enA, OUTPUT); // declare as output for L298 Pin enA 
-pinMode(in1, OUTPUT); // declare as output for L298 Pin in1 
-pinMode(in2, OUTPUT); // declare as output for L298 Pin in2 
-pinMode(in3, OUTPUT); // declare as output for L298 Pin in3   
-pinMode(in4, OUTPUT); // declare as output for L298 Pin in4 
-pinMode(enB, OUTPUT); // declare as output for L298 Pin enB 
+
+
+Serial.begin(9600); // start serial communication at 9600bps
+BT_Serial.begin(38400);
+
+
+pinMode(enA, OUTPUT); // declare as output for L298 Pin enA
+pinMode(in1, OUTPUT); // declare as output for L298 Pin in1
+pinMode(in2, OUTPUT); // declare as output for L298 Pin in2
+pinMode(in3, OUTPUT); // declare as output for L298 Pin in3 
+pinMode(in4, OUTPUT); // declare as output for L298 Pin in4
+pinMode(enB, OUTPUT); // declare as output for L298 Pin enB
+
+
+
 
 delay(200);
 }
 void loop(){
-if(BT_Serial.available() > 0){  //if some date is sent, reads it and saves in state     
-bt_data = BT_Serial.read(); 
-Serial.println(bt_data);          
+if(BT_Serial.available() > 0){  //if some date is sent, reads it and saves in state   
+bt_data = BT_Serial.read();
+Serial.println(bt_data);        
 }
-  
 if(bt_data == 'f'){
-      forward();  
-      Speed=180;// if the bt_data is 'f' the DC motor will go forward
-      }  
+    forward();
+    Speed=180;// if the bt_data is 'f' the DC motor will go forward
+    Serial.println('f');
+    }
 else if(bt_data == 'b'){
-      backward(); 
-      Speed=180; // if the bt_data is 'b' the motor will go backward
-      }  
+    backward();
+    Speed=180; // if the bt_data is 'b' the motor will go backward
+    Serial.println('b');
+    }
 else if(bt_data == 'l'){
-      turnLeft(); 
-      Speed=250; // if the bt_data is 'l' the motor will turn left
-      }  
+    turnLeft();
+    Speed=250; // if the bt_data is 'l' the motor will turn left
+    Serial.println('l');
+    }
 else if(bt_data == 'r'){
-      turnRight();
-      Speed=250; // if the bt_data is 'r' the motor will turn right
-      } 
+    turnRight();
+    Speed=250; // if the bt_data is 'r' the motor will turn right
+    Serial.println('r');
+    }
 else if(bt_data == 's'){
-      Stop();  // if the bt_data 's' the motor will Stop
-      }   
+    Stop();  // if the bt_data 's' the motor will Stop
+    Serial.println('s');
+    } 
 
-analogWrite(enA, Speed); // Write The Duty Cycle 0 to 255 Enable Pin A for Motor1 Speed 
-analogWrite(enB, Speed); // Write The Duty Cycle 0 to 255 Enable Pin B for Motor2 Speed 
+
+
+
+analogWrite(enA, Speed); // Write The Duty Cycle 0 to 255 Enable Pin A for Motor1 Speed
+analogWrite(enB, Speed); // Write The Duty Cycle 0 to 255 Enable Pin B for Motor2 Speed
+
+
+
 
 delay(50);
 }
 
+
+
+
 void forward(){  //forward
-digitalWrite(in1, HIGH); //Right Motor forward Pin 
-digitalWrite(in2, LOW);  //Right Motor backward Pin 
-digitalWrite(in3, LOW);  //Left Motor backward Pin 
-digitalWrite(in4, HIGH); //Left Motor forward Pin 
+digitalWrite(in1, HIGH); //Right Motor forward Pin
+digitalWrite(in2, LOW);  //Right Motor backward Pin
+digitalWrite(in3, LOW);  //Left Motor backward Pin
+digitalWrite(in4, HIGH); //Left Motor forward Pin
 }
+
+
+
 
 void backward(){ //backward
-digitalWrite(in1, LOW);  //Right Motor forward Pin 
-digitalWrite(in2, HIGH); //Right Motor backward Pin 
-digitalWrite(in3, HIGH); //Left Motor backward Pin 
-digitalWrite(in4, LOW);  //Left Motor forward Pin 
+digitalWrite(in1, LOW);  //Right Motor forward Pin
+digitalWrite(in2, HIGH); //Right Motor backward Pin
+digitalWrite(in3, HIGH); //Left Motor backward Pin
+digitalWrite(in4, LOW);  //Left Motor forward Pin
 }
+
+
+
 
 void turnRight(){ //turnRight
-digitalWrite(in1, LOW);  //Right Motor forward Pin 
-digitalWrite(in2, HIGH); //Right Motor backward Pin  
-digitalWrite(in3, LOW);  //Left Motor backward Pin 
-digitalWrite(in4, HIGH); //Left Motor forward Pin 
+digitalWrite(in1, LOW);  //Right Motor forward Pin
+digitalWrite(in2, HIGH); //Right Motor backward Pin
+digitalWrite(in3, LOW);  //Left Motor backward Pin
+digitalWrite(in4, HIGH); //Left Motor forward Pin
 }
+
+
+
 
 void turnLeft(){ //turnLeft
-digitalWrite(in1, HIGH); //Right Motor forward Pin 
-digitalWrite(in2, LOW);  //Right Motor backward Pin 
-digitalWrite(in3, HIGH); //Left Motor backward Pin 
-digitalWrite(in4, LOW);  //Left Motor forward Pin 
+digitalWrite(in1, HIGH); //Right Motor forward Pin
+digitalWrite(in2, LOW);  //Right Motor backward Pin
+digitalWrite(in3, HIGH); //Left Motor backward Pin
+digitalWrite(in4, LOW);  //Left Motor forward Pin
 }
 
+
+
+
 void Stop(){ //stop
-digitalWrite(in1, LOW); //Right Motor forward Pin 
-digitalWrite(in2, LOW); //Right Motor backward Pin 
-digitalWrite(in3, LOW); //Left Motor backward Pin 
-digitalWrite(in4, LOW); //Left Motor forward Pin 
+digitalWrite(in1, LOW); //Right Motor forward Pin
+digitalWrite(in2, LOW); //Right Motor backward Pin
+digitalWrite(in3, LOW); //Left Motor backward Pin
+digitalWrite(in4, LOW); //Left Motor forward Pin
 }
 
 }
