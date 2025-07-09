@@ -57,7 +57,7 @@ For the next milestone, I will be adding my modifications.
 
 ## Images
 
-![Image3](IMG_2391.HEIC) 
+![Image3](IMG_2391.HEIC)
 ![Image4](IMG_2392.HEIC) 
 
 
