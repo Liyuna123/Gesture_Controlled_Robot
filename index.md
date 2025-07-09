@@ -150,11 +150,11 @@ For the next milestone, I will be creating the controller and testing to see tha
 - What your plan is to complete your project-->
 
 # Schematics 
-Here is the digital version of the schematics of my controller.
-![Controller schematic](Schematic2.png)
+Here is the digital version of the schematics of my controller. The small blue rectangle is the MPU6050, the long rectangle in the upper middle is the Arduino Nano, and the rectangle sticking out is the HC05. It is powered by the power bank.
+![Controller schematic](gesturecontrolFINAL.png)
 
-Here is the digital version of the schematics of my robot.
-![Robot schematic](schematic1.png)
+Here is the digital version of the schematics of my robot. There are 4 DC motors, the red motor driver, small HC-05, and the Arduinio Uno. It is powered by a 9V battery.
+![Robot schematic](robotschematicFINAL.png)
 <!--Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
 # Code
