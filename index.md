@@ -110,8 +110,8 @@ For the next milestone, I will be adding my sending my code and having the robot
 
 ## Image
 
-![Image1](IMG_2186.HEIC)
 ![Image2](IMG_2073.HEIC)
+![Image1](IMG_2186.HEIC)
 
 
 
@@ -155,7 +155,6 @@ Here is the digital version of the schematics of my controller.
 
 Here is the digital version of the schematics of my robot.
 ![Robot schematic](schematic1.png)
-</div>
 <!--Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
 # Code
