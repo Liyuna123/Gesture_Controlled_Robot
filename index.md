@@ -1,4 +1,4 @@
-My project is a gesture controller robot. The robot is controlled by an Arduino hand gesture control that can be worn on the hand. The control works through bluetooth, and the robot can turn in all directions with its 4 wheels.
+xMy project is a gesture controller robot. The robot is controlled by an Arduino hand gesture control that can be worn on the hand. The control works through bluetooth, and the robot can turn in all directions with its 4 wheels.
 
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
@@ -54,6 +54,12 @@ By adding a line that says "Serial.println('xy')," I was able to see what data w
 
 ## Next Step
 For the next milestone, I will be adding my modifications.
+
+## Images
+
+![Image3](IMG_2391.HEIC) 
+![Image4](IMG_2392.HEIC) 
+
 
 
 # Second Milestone
