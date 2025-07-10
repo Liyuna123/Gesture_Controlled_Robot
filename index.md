@@ -123,7 +123,7 @@ For the next milestone, I will be adding my sending my code and having the robot
 
 ## Image
 
-The images below show the updates I made for milestone 2. The controller was new to the milestone, and it is powered by a 9V battery. I also added the wheels to the  car.
+The images below show the updates I made for milestone 2. The controller was new to the milestone, and it is powered by a 9V battery (refer to Controller Schematics for details on controller). I also added the wheels to the  car.
 ![Milestone 2 Robot](Milestone_2_Robot.png)
 ![Milestone 2 Controller](Milestone_2_Controller.png)
 
@@ -156,7 +156,7 @@ For the next milestone, I will be creating the controller and testing to see tha
 
 ## Image
 
-This is an image of what I achieved in this milestone. In the image, you can see that the hardware of the robot is built, but I have not yet attached the wheels. 
+This is an image of what I achieved in this milestone (refer to Robot Schematics for more details). In the image, you can see that the hardware of the robot is built, but I have not yet attached the wheels. 
 ![Milestone 1 Robot](Milestone_1_Robot.png)
 
 <!--For your first milestone, describe what your project is and how you plan to build it. You can include:
