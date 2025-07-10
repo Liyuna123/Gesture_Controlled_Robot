@@ -57,6 +57,7 @@ For the next milestone, I will be adding my modifications.
 
 ## Images
 
+The images show the final adjustments I made for my base project. I changed the batteries on each component, as the controller is now powered by a battery pack and the robot is powered by a 9V battery.
 ![Image3](IMG_2391.HEIC)
 ![Image4](IMG_2392.HEIC) 
 
@@ -110,6 +111,7 @@ For the next milestone, I will be adding my sending my code and having the robot
 
 ## Image
 
+The images below show the updates I made for milestone 2. The controller was new to the milestone, and it is powered by a 9V battery. I also added the wheels to the  car.
 ![Image2](IMG_2073.HEIC)
 ![Image1](IMG_2186.HEIC)
 
@@ -123,7 +125,7 @@ For the next milestone, I will be adding my sending my code and having the robot
 
 ## Description
 
-For my first milestone, I built the base of the robot. It includes 4 DC motors, a drive motor, 4 AAA batteries, and an Arduino Uno. The first step was to secure the DC motors and add a wheel to them. Then, I soldered wires to them which connected to the motor driver. Finally, I attached the battery case to the motor driver and the Arduino Uno to the motor driver with male to female wires. One of the most important things I had to do in Milestone 1 was being careful with the wire connections. On the robot body, the VCC on the HC-05 should be connected to the 5V on the Arduino Uno, the two ground pins should be connected, the TX pin should be connected to the RX pin, and vice versa. The ENA, In1, IN2, IN3, IN4, and ENB pins on the motor driver should be connected to the D10, D9, D8, D7, D6, and D5 pins on the Arduino Uno. On the robot controller, only the TX and RX pin on the HC-05 should be connected to the RX and TX pins on the Arduino Nano. The SCL pin on the accelerometer should be connected to the A4 pin, and the SDA pin should be connected to A5.
+For my first milestone, I built the base of the robot. It includes 4 DC motors, a drive motor, 4 AAA batteries, and an Arduino Uno. The first step was to secure the DC motors and add a wheel to them. Then, I soldered wires to them which connected to the motor driver. Finally, I attached the battery case to the motor driver and the Arduino Uno to the motor driver with male to female wires. One of the most important things I had to do in Milestone 1 was being careful with the wire connections. On the robot body, the VCC on the HC-05 should be connected to the 5V on the Arduino Uno, the two ground pins should be connected, the TX pin should be connected to the RX pin, and vice versa. The ENA, IN1, IN2, IN3, IN4, and ENB pins on the motor driver should be connected to the D10, D9, D8, D7, D6, and D5 pins on the Arduino Uno. On the robot controller, only the TX and RX pin on the HC-05 should be connected to the RX and TX pins on the Arduino Nano. The SCL pin on the accelerometer should be connected to the A4 pin, and the SDA pin should be connected to A5.
 
 ## Challenges
 
@@ -141,6 +143,8 @@ The final issue I faced was when soldering the wires to each other to connect to
 For the next milestone, I will be creating the controller and testing to see that each component works individually.
 
 ## Image
+
+This is an image of what I achieved in this milestone. In the image, you can see that the hardware of the robot is built. I have not yet attached the wheels. 
 ![Image1](IMG_2073.HEIC)
 
 <!--For your first milestone, describe what your project is and how you plan to build it. You can include:
@@ -150,7 +154,7 @@ For the next milestone, I will be creating the controller and testing to see tha
 - What your plan is to complete your project-->
 
 # Schematics 
-Here is the digital version of the schematics of my controller. The small blue rectangle is the MPU6050, the long rectangle in the upper middle is the Arduino Nano, and the rectangle sticking out is the HC05. It is powered by the power bank.
+Here is the digital version of the schematics of my controller. The small blue rectangle is the MPU6050, the long rectangle in the upper middle is the Arduino Nano, and the rectangle sticking out is the HC05. It is powered by the battery pack.
 ![Controller schematic](gesturecontrolFINAL.png)
 
 Here is the digital version of the schematics of my robot. There are 4 DC motors, the red motor driver, small HC-05, and the Arduinio Uno. It is powered by a 9V battery.
