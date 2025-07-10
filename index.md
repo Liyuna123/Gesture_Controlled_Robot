@@ -144,7 +144,7 @@ For the next milestone, I will be creating the controller and testing to see tha
 
 ## Image
 
-This is an image of what I achieved in this milestone. In the image, you can see that the hardware of the robot is built. I have not yet attached the wheels. 
+This is an image of what I achieved in this milestone. In the image, you can see that the hardware of the robot is built, but I have not yet attached the wheels. 
 ![Milestone 1 Robot](Milestone_1_Robot.png)
 
 <!--For your first milestone, describe what your project is and how you plan to build it. You can include:
