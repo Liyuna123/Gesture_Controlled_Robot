@@ -1,4 +1,4 @@
-xMy project is a gesture controller robot. The robot is controlled by an Arduino hand gesture control that can be worn on the hand. The control works through bluetooth, and the robot can turn in all directions with its 4 wheels.
+My project is a gesture controller robot. The robot is controlled by an Arduino hand gesture control that can be worn on the hand. The control works through bluetooth, and the robot can turn in all directions with its 4 wheels.
 
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
@@ -20,6 +20,17 @@ For your final milestone, explain the outcome of your project. Key details to in
 - What your biggest challenges and triumphs were at BSE
 - A summary of key topics you learned about
 - What you hope to learn in the future after everything you've learned at BSE--->
+
+<!--# Modification Milestone
+
+<!--<iframe width="560" height="315" src="https://www.youtube.com/embed/PHOumUvl-Y8?si=3Ckai170BCbswP4G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
+
+<!--## Description
+
+
+## How it works
+
+## Challenges-->
 
 # Final Milestone
 
