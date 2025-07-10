@@ -58,8 +58,8 @@ For the next milestone, I will be adding my modifications.
 ## Images
 
 The images show the final adjustments I made for my base project. I changed the batteries on each component, as the controller is now powered by a battery pack and the robot is powered by a 9V battery.
-![Image3](IMG_2391.HEIC)
-![Image4](IMG_2392.HEIC) 
+![Milestone 3 controller](Milestone_3_controller.png)
+![Milestone 3 Robot](Milestone_3_Robot.png) 
 
 
 
@@ -112,8 +112,8 @@ For the next milestone, I will be adding my sending my code and having the robot
 ## Image
 
 The images below show the updates I made for milestone 2. The controller was new to the milestone, and it is powered by a 9V battery. I also added the wheels to the  car.
-![Image2](IMG_2073.HEIC)
-![Image1](IMG_2186.HEIC)
+![Milestone 2 Robot](Milestone_2_Robot.png)
+![Milestone 2 Controller](Milestone_2_Controller.png)
 
 
 
@@ -145,7 +145,7 @@ For the next milestone, I will be creating the controller and testing to see tha
 ## Image
 
 This is an image of what I achieved in this milestone. In the image, you can see that the hardware of the robot is built. I have not yet attached the wheels. 
-![Image1](IMG_2073.HEIC)
+![Milestone 1 Robot](Milestone_1_Robot.png)
 
 <!--For your first milestone, describe what your project is and how you plan to build it. You can include:
 - An explanation about the different components of your project and how they will all integrate together
