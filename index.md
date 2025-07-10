@@ -50,7 +50,7 @@ For the hand controller, a key component is the MPU6050, which I have also refer
 
 ### MPU6050
 I faced an issue with the accelerometer showing 127 on all three axes, which was inaccurate. This means the data was not being recieved by the Arduino, meaning wiring was wrong. I fixed this by first switching out the accelerometer, which didn't work. Therefore, I switched the wiring so that SD pin would connect to SC pin of Arduino, not SD. This is important because the SCL pin is the Serial Clock Line, and it tells Arduino it is ready to send data. On the other hand, the SDA is Serial Data Line, and it sends data. Wiring is important because the SC pin has to communicate that it is ready to send data before the SD pin sends it over.
-This fixed it.
+This fixed the issue.
 ### Code
 
 **Flags:**
