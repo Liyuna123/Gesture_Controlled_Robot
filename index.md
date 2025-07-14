@@ -26,9 +26,11 @@ For my modification milestone, I added a total of __ modifications. Here are wha
 
 **HC-SR04:** The HC-SR04 is an ultrasonic sensor. Ultrasonic referes to sound waves that are ultrasound, meaning their frequency is higher than 20,000 Hz, which is the highest frequency a human can hear. Ultrasonic sensors measure distance by using this. The sensor sends a ultrasonic sound wave through its Trigger pin, and then it measures how much time it takes the sound to bounce back to the Echo pin, which receives the sound. Because distance is speed multiplied by time, ultrasonic sensors are able to calculate the distance by multiplying the speed of sound, which is 340 m/s, by how long the "bounce back" lasts.
 
-<p align="center"><img src="hcsr04.png" width="275" height="275">
-
-figure 11
+<p align="center">
+  <img src="hcsr04.png" width="275" height="275">
+  <br>
+  <small> figure 11: an ultrasonic sensor with 4 pins: vcc, trig, echo, and gnd</small>
+</p>
 
 # Final Milestone
 
@@ -43,9 +45,12 @@ For my third milestone, I had the two components work together. The first step w
 **MPU6050:**
 For the hand controller, a key component is the MPU6050, which I have also referred to as the accelerometer. The MPU6050 has four main components, the gyroscope, accelerometer, temperature sensor, and digital motion processor, and is capable of measuring an object's acceleration, temperature, and angular velocity. In my project, its primary use is measure the angle at which it is being held at. This is extremely important because my robot is controlled by gestures. The accelerometer works by detecting the force that is being put on the object. My code allows this data to be converted to a single letter of the following: f (forward), b (backward), r (right), l(left), or s(stop). This information is then sent to the robot through the HC-05, and the robot interprets the letter and decides which direction to go.
 
-<p align="center"><img src="mpu6050.jpg" width="275" height="275">
+<p align="center">
+  <img src="mpu6050.jpg" width="275" height="275">
+  <br>
+  <small>figure 10: an accelerometer with 8 pins </small>
+</p>
 
-figure 10
 
 ## Challenges
 
@@ -72,13 +77,17 @@ For the next milestone, I will be adding my modifications.
 
 The images show the final adjustments I made for my base project. I changed the batteries on each component, as the controller is now powered by a battery pack and the robot is powered by a 9V battery.
 
-<p align="center"><img src="Milestone_3_controller.png" width="400" height="300">
+<p align="center">
+  <img src="Milestone_3_controller.png" width="400" height="300">
+  <br>
+  <small>figure 8: milestone 3 controller</small>
+</p>
 
-figure 8
-
-<img src="Milestone_3_Robot.png" width="400" height="300"> 
-
-figure 9
+<p align="center">
+  <img src="Milestone_3_Robot.png" width="400" height="300"> 
+  <br>
+  <small>figure 9: milestone 3 robot</small>
+</p>
 
 
 
@@ -95,16 +104,23 @@ For my second milestone, I built the hand controller of the robot and tested eac
 **Motor Driver:**
 One of the key components of this milestone is the motor driver. It works with having the motors connected to its pins, which are screwed in. For the motor driver, polarity decides which direction is forward and backword. It is also able to switch directions without re-wiring through the H-Bridge. The H-Bridge allows the motor driver to control the direction of the DC motors by, in a way, acting as a "bridge" between the power source, which is either the battery or laptop, to the motor. The motor driver has 6 pins, each of which has a seperate function. The pins are the ENA pin (left side speed), IN1 (left side direction), IN2 (backward/forward on left side), ENB (right side speed), IN3 (right side direction), 
 
-<p align="center"><img src="motordriver.jpg" width="275" height="275">
+<p align="center">
+  <img src="motordriver.jpg" width="275" height="275">
+  <br>
+  <small>figure 7: a motor driver with 6 pins and an h bridge</small>
+</p>
 
 figure 7
 
 **HC-05s:**
 The HC-05s work by, as said earlier, setting a master and slave module. Once they are bound together, the HC-05 promptly sends messages between the two modules. 
 
-<p align="center"><img src="hc05.png" width="400" height="300">
+<p align="center">
+    <img src="hc05.png" width="400" height="300">
+    <br>
+    <small>figure 6: a bluetooth module with an led and 6 pins: EN, 5V, Gnd, Tx, Rx, and state </small>
+</p>
 
-figure 6
 
 ## Challenges
 
@@ -140,13 +156,16 @@ For the next milestone, I will be adding my sending my code and having the robot
 
 The images below show the updates I made for milestone 2. The controller was new to the milestone, and it is powered by a 9V battery (refer to Controller Schematics for details on controller). I also added the wheels to the  car.
 
-<p align="center"><img src="Milestone_2_Robot.png" width="400" height="300">
+<p align="center">
+  <img src="Milestone_2_Robot.png" width="400" height="300">
+  <br>
+  <small>figure 4: milestone 2 robot</small>
+</p>
 
-figure 4
-
-<p align="center"><img src="Milestone_2_Controller.png" width="400" height="300">
-
-figure 5
+<p align="center">
+  <img src="Milestone_2_Controller.png" width="400" height="300">
+  <br>
+  <small>figure 5: milestone 2 controller</small>
 
 
 
@@ -175,7 +194,15 @@ The final issue I faced was when soldering the wires to each other to connect to
 
 For the next milestone, I will be creating the controller and testing to see that each component works individually.
 
-# Starter Project Milestone
+## Image
+
+This is an image of what I achieved in this milestone (refer to Robot Schematics for more details). In the image, you can see that the hardware of the robot is built, but I have not yet attached the wheels. 
+<p align="center">
+  <img src="Milestone_1_Robot.png" width="400" height="300">
+  <br>
+  <small>figure 3: milestone 1 robot</small>
+
+  # Starter Project Milestone
 
 <!--**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**-->
 <!---youtube video below -->
@@ -191,12 +218,7 @@ The first challenge I faced was soldering the pins. Because they were so close t
 
 **Next Step:**
 Using the things I learned in the starter project, I would start working on my intensive project.
-## Image
 
-This is an image of what I achieved in this milestone (refer to Robot Schematics for more details). In the image, you can see that the hardware of the robot is built, but I have not yet attached the wheels. 
-<p align="center"><img src="Milestone_1_Robot.png" width="400" height="300">
-
-  figure 3
 
 <!--For your first milestone, describe what your project is and how you plan to build it. You can include:
 - An explanation about the different components of your project and how they will all integrate together
@@ -206,6 +228,7 @@ This is an image of what I achieved in this milestone (refer to Robot Schematics
 
 # Schematics 
 Here is the digital version of the schematics of my controller. The small blue rectangle is the MPU6050, the long rectangle in the upper middle is the Arduino Nano, and the rectangle sticking out is the HC05. It is powered by the battery pack.
+
 ![Controller schematic](gesturecontrolFINAL.png)
 figure 1
 
