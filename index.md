@@ -69,7 +69,7 @@ For the next milestone, I will be adding my modifications.
 The images show the final adjustments I made for my base project. I changed the batteries on each component, as the controller is now powered by a battery pack and the robot is powered by a 9V battery.
 <img src="Milestone_3_controller.png" width="200" height="150">
 figure 8
-<img src="Milestone_3_robot.png" width="200" height="150"> 
+<img src="Milestone_3_Robot.png" width="200" height="150"> 
 figure 9
 
 
@@ -127,7 +127,7 @@ For the next milestone, I will be adding my sending my code and having the robot
 ## Image
 
 The images below show the updates I made for milestone 2. The controller was new to the milestone, and it is powered by a 9V battery (refer to Controller Schematics for details on controller). I also added the wheels to the  car.
-<img src="Milestone_2_robot.png" width="200" height="150">
+<img src="Milestone_2_Robot.png" width="200" height="150">
 figure 4
 <img src="Milestone_2_Controller.png" width="200" height="150">
 figure 5
