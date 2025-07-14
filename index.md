@@ -8,7 +8,7 @@ My project is a gesture controller robot. The robot is controlled by an Arduino 
 
 <!--- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**-->
 
-![Headstone Image](logo.svg){width=100} 
+![Headstone Image](logo.svg)
   
 # Modification Milestone
 
@@ -26,7 +26,7 @@ For my modification milestone, I added a total of __ modifications. Here are wha
 
 **HC-SR04:** The HC-SR04 is an ultrasonic sensor. Ultrasonic referes to sound waves that are ultrasound, meaning their frequency is higher than 20,000 Hz, which is the highest frequency a human can hear. Ultrasonic sensors measure distance by using this. The sensor sends a ultrasonic sound wave through its Trigger pin, and then it measures how much time it takes the sound to bounce back to the Echo pin, which receives the sound. Because distance is speed multiplied by time, ultrasonic sensors are able to calculate the distance by multiplying the speed of sound, which is 340 m/s, by how long the "bounce back" lasts.
 
-![hcsr04](hcsr04.png){width=250} 
+![hcsr04](hcsr04.png)
 
 # Final Milestone
 
