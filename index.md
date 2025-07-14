@@ -27,8 +27,8 @@ For my modification milestone, I added a total of __ modifications. Here are wha
 **HC-SR04:** The HC-SR04 is an ultrasonic sensor. Ultrasonic referes to sound waves that are ultrasound, meaning their frequency is higher than 20,000 Hz, which is the highest frequency a human can hear. Ultrasonic sensors measure distance by using this. The sensor sends a ultrasonic sound wave through its Trigger pin, and then it measures how much time it takes the sound to bounce back to the Echo pin, which receives the sound. Because distance is speed multiplied by time, ultrasonic sensors are able to calculate the distance by multiplying the speed of sound, which is 340 m/s, by how long the "bounce back" lasts.
 
 <img src="hcsr04.png" width="175" height="175">
-
 figure 11
+
 # Final Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PHOumUvl-Y8?si=3Ckai170BCbswP4G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
