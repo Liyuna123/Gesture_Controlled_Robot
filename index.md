@@ -26,7 +26,8 @@ For my modification milestone, I added a total of __ modifications. Here are wha
 
 **HC-SR04:** The HC-SR04 is an ultrasonic sensor. Ultrasonic referes to sound waves that are ultrasound, meaning their frequency is higher than 20,000 Hz, which is the highest frequency a human can hear. Ultrasonic sensors measure distance by using this. The sensor sends a ultrasonic sound wave through its Trigger pin, and then it measures how much time it takes the sound to bounce back to the Echo pin, which receives the sound. Because distance is speed multiplied by time, ultrasonic sensors are able to calculate the distance by multiplying the speed of sound, which is 340 m/s, by how long the "bounce back" lasts.
 
-<img src="hcsr04.png" width="100" height="100">
+<img src="hcsr04.png" width="175" height="175">
+figure 11
 # Final Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PHOumUvl-Y8?si=3Ckai170BCbswP4G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -39,7 +40,7 @@ For my third milestone, I had the two components work together. The first step w
 
 **MPU6050:**
 For the hand controller, a key component is the MPU6050, which I have also referred to as the accelerometer. The MPU6050 has four main components, the gyroscope, accelerometer, temperature sensor, and digital motion processor, and is capable of measuring an object's acceleration, temperature, and angular velocity. In my project, its primary use is measure the angle at which it is being held at. This is extremely important because my robot is controlled by gestures. The accelerometer works by detecting the force that is being put on the object. My code allows this data to be converted to a single letter of the following: f (forward), b (backward), r (right), l(left), or s(stop). This information is then sent to the robot through the HC-05, and the robot interprets the letter and decides which direction to go.
-![mpu6050](mpu6050.jpg)
+<img src="mpu6050.jpg" width="175" height="175">
 figure 10
 
 ## Challenges
@@ -66,9 +67,9 @@ For the next milestone, I will be adding my modifications.
 ## Images
 
 The images show the final adjustments I made for my base project. I changed the batteries on each component, as the controller is now powered by a battery pack and the robot is powered by a 9V battery.
-![Milestone 3 controller](Milestone_3_controller.png)
+<img src="Milestone_3_controller.png" width="200" height="150">
 figure 8
-![Milestone 3 Robot](Milestone_3_Robot.png) 
+<img src="Milestone_3_robot.png" width="200" height="150"> 
 figure 9
 
 
@@ -85,12 +86,12 @@ For my second milestone, I built the hand controller of the robot and tested eac
 
 **Motor Driver:**
 One of the key components of this milestone is the motor driver. It works with having the motors connected to its pins, which are screwed in. For the motor driver, polarity decides which direction is forward and backword. It is also able to switch directions without re-wiring through the H-Bridge. The H-Bridge allows the motor driver to control the direction of the DC motors by, in a way, acting as a "bridge" between the power source, which is either the battery or laptop, to the motor. The motor driver has 6 pins, each of which has a seperate function. The pins are the ENA pin (left side speed), IN1 (left side direction), IN2 (backward/forward on left side), ENB (right side speed), IN3 (right side direction), 
-![motordriver](motordriver.jpg)
+<img src="motordriver.jpg" width="175" height="175">
 figure 7
 
 **HC-05s:**
 The HC-05s work by, as said earlier, setting a master and slave module. Once they are bound together, the HC-05 promptly sends messages between the two modules. 
-![hc05](hc05.png)
+<img src="hc05.png" width="200" height="150">
 figure 6
 
 ## Challenges
@@ -126,9 +127,9 @@ For the next milestone, I will be adding my sending my code and having the robot
 ## Image
 
 The images below show the updates I made for milestone 2. The controller was new to the milestone, and it is powered by a 9V battery (refer to Controller Schematics for details on controller). I also added the wheels to the  car.
-![Milestone 2 Robot](Milestone_2_Robot.png)
+<img src="Milestone_2_robot.png" width="200" height="150">
 figure 4
-![Milestone 2 Controller](Milestone_2_Controller.png)
+<img src="Milestone_2_Controller.png" width="200" height="150">
 figure 5
 
 
