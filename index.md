@@ -45,6 +45,8 @@ For my third milestone, I had the two components work together. The first step w
 
 **MPU6050:**
 For the hand controller, a key component is the MPU6050, which I have also referred to as the accelerometer. The MPU6050 has four main components, the gyroscope, accelerometer, temperature sensor, and digital motion processor, and is capable of measuring an object's acceleration, temperature, and angular velocity. In my project, its primary use is measure the angle at which it is being held at. This is extremely important because my robot is controlled by gestures. The accelerometer works by detecting the force that is being put on the object. My code allows this data to be converted to a single letter of the following: f (forward), b (backward), r (right), l(left), or s(stop). This information is then sent to the robot through the HC-05, and the robot interprets the letter and decides which direction to go.
+![mpu6050](mpu6050.jpg)
+figure 10
 
 ## Challenges
 
@@ -71,7 +73,9 @@ For the next milestone, I will be adding my modifications.
 
 The images show the final adjustments I made for my base project. I changed the batteries on each component, as the controller is now powered by a battery pack and the robot is powered by a 9V battery.
 ![Milestone 3 controller](Milestone_3_controller.png)
+figure 8
 ![Milestone 3 Robot](Milestone_3_Robot.png) 
+figure 9
 
 
 
@@ -87,9 +91,13 @@ For my second milestone, I built the hand controller of the robot and tested eac
 
 **Motor Driver:**
 One of the key components of this milestone is the motor driver. It works with having the motors connected to its pins, which are screwed in. For the motor driver, polarity decides which direction is forward and backword. It is also able to switch directions without re-wiring through the H-Bridge. The H-Bridge allows the motor driver to control the direction of the DC motors by, in a way, acting as a "bridge" between the power source, which is either the battery or laptop, to the motor. The motor driver has 6 pins, each of which has a seperate function. The pins are the ENA pin (left side speed), IN1 (left side direction), IN2 (backward/forward on left side), ENB (right side speed), IN3 (right side direction), 
+![motordriver](motordriver.jpg)
+figure 7
 
 **HC-05s:**
 The HC-05s work by, as said earlier, setting a master and slave module. Once they are bound together, the HC-05 promptly sends messages between the two modules. 
+![hc05](hc05.png)
+figure 6
 
 ## Challenges
 
@@ -125,7 +133,9 @@ For the next milestone, I will be adding my sending my code and having the robot
 
 The images below show the updates I made for milestone 2. The controller was new to the milestone, and it is powered by a 9V battery (refer to Controller Schematics for details on controller). I also added the wheels to the  car.
 ![Milestone 2 Robot](Milestone_2_Robot.png)
+figure 4
 ![Milestone 2 Controller](Milestone_2_Controller.png)
+figure 5
 
 
 
@@ -154,10 +164,27 @@ The final issue I faced was when soldering the wires to each other to connect to
 
 For the next milestone, I will be creating the controller and testing to see that each component works individually.
 
+# Starter Project Milestone
+
+<!--**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**-->
+<!---youtube video below -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hjAuse6q-Nc?si=5vD7hXNev6jRxSgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+
+**Description:**
+My starter project was a retro arcade game console, which was a way to practice soldering both pins and wires. The project includes several displays, buttons, and wires. The first step for the starter project was soldering each of the displays and buttons on to the board. The next step was to solder the wires that were connected to the battery case to the board. The last step was to assemble the case and screw everything in.
+
+**Challenges:**
+The first challenge I faced was soldering the pins. Because they were so close together, it was important to be careful to not solder other pins. The second challenge I faced was soldering the wires. This was was a problem for me because I found it was difficult to keep them in place. To solve this issue, I first tried bending them to stay in place, which did not work, so I ended up using eletrical tape to hold them in place. Another issue I faced when soldering the wires was burning some of them. I fixed this by stripping more of the wire and being sure not to hold the soldering iron to them to long. The last challenge I faced was screwing in the case. I used the wrong screws multiple times, which I fixed after trial and error and looking at other students' projects.
+
+**Next Step:**
+Using the things I learned in the starter project, I would start working on my intensive project.
 ## Image
 
 This is an image of what I achieved in this milestone (refer to Robot Schematics for more details). In the image, you can see that the hardware of the robot is built, but I have not yet attached the wheels. 
 ![Milestone 1 Robot](Milestone_1_Robot.png)
+figure 3
 
 <!--For your first milestone, describe what your project is and how you plan to build it. You can include:
 - An explanation about the different components of your project and how they will all integrate together
@@ -168,9 +195,11 @@ This is an image of what I achieved in this milestone (refer to Robot Schematics
 # Schematics 
 Here is the digital version of the schematics of my controller. The small blue rectangle is the MPU6050, the long rectangle in the upper middle is the Arduino Nano, and the rectangle sticking out is the HC05. It is powered by the battery pack.
 ![Controller schematic](gesturecontrolFINAL.png)
+figure 1
 
 Here is the digital version of the schematics of my robot. There are 4 DC motors, the red motor driver, small HC-05, and the Arduinio Uno. It is powered by a 9V battery.
 ![Robot schematic](robotschematicFINAL.png)
+figure 2
 <!--Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
 # Code
@@ -636,22 +665,6 @@ This is a list of the materials required for my intensive project.
 | Battery Holder, 18650 x 2| Used to attach battery to robot| $8 | <a href="https://www.newark.com/keystone/1048/battery-holder-18650-li-ion-2cell/dp/56T2029?COM=ref_hackster&CMP=Hackster-NA-project-94b13d-Jun-25/"> Link </a> |
 
 
-# Starter Project Milestone
-
-<!--**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**-->
-<!---youtube video below -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hjAuse6q-Nc?si=5vD7hXNev6jRxSgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-
-**Description:**
-My starter project was a retro arcade game console, which was a way to practice soldering both pins and wires. The project includes several displays, buttons, and wires. The first step for the starter project was soldering each of the displays and buttons on to the board. The next step was to solder the wires that were connected to the battery case to the board. The last step was to assemble the case and screw everything in.
-
-**Challenges:**
-The first challenge I faced was soldering the pins. Because they were so close together, it was important to be careful to not solder other pins. The second challenge I faced was soldering the wires. This was was a problem for me because I found it was difficult to keep them in place. To solve this issue, I first tried bending them to stay in place, which did not work, so I ended up using eletrical tape to hold them in place. Another issue I faced when soldering the wires was burning some of them. I fixed this by stripping more of the wire and being sure not to hold the soldering iron to them to long. The last challenge I faced was screwing in the case. I used the wrong screws multiple times, which I fixed after trial and error and looking at other students' projects.
-
-**Next Step:**
-Using the things I learned in the starter project, I would start working on my intensive project.
 
 <!--# Other Resources/Examples
 One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
