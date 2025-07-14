@@ -15,15 +15,18 @@ My project is a gesture controller robot. The robot is controlled by an Arduino 
 ## Description
 
 For my modification milestone, I added a total of __ modifications. Here are what they are:
+
 **Spin feature:** The first modification I added was a spin feature. By tilting the control forward and left, the robot would spin 360 until returned to a different position. I added this modification by adding code in a similar format as the basic gestures, except I added 2 requirements, which were forward and left, instead of just one. I had the robot move by having one side move forward and the other spinning backward. This landed on the result I wanted.
+
 **Speed control:** The second modification I added was the ability to control the speed based on the degree of the tilt. This was also a change in code, as I added multiple settings so that a steeper tilt would result in a higher speed.
+
 **Ultrasonic Sensor:** The third modification I added was an ultrasonic sensor. I first wired the sensor in, then tested it, and, finally, added code so it would somewhat control the robot.
 
 ## How it works
 
 **HC-SR04:** The HC-SR04 is an ultrasonic sensor. Ultrasonic referes to sound waves that are ultrasound, meaning their frequency is higher than 20,000 Hz, which is the highest frequency a human can hear. Ultrasonic sensors measure distance by using this. The sensor sends a ultrasonic sound wave through its Trigger pin, and then it measures how much time it takes the sound to bounce back to the Echo pin, which receives the sound. Because distance is speed multiplied by time, ultrasonic sensors are able to calculate the distance by multiplying the speed of sound, which is 340 m/s, by how long the "bounce back" lasts.
 
-![hcsr04](hcsr04.png)
+![hcsr04](hcsr04.png){width=250} 
 
 # Final Milestone
 
