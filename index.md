@@ -10,28 +10,20 @@ My project is a gesture controller robot. The robot is controlled by an Arduino 
 
 ![Headstone Image](logo.svg)
   
-<!--# Final Milestone
+# Modification Milestone
 
-<!---**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**-->
-<!---youtube video below -->
-<!---<iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+## Description
 
-For your final milestone, explain the outcome of your project. Key details to include are:
-- What you've accomplished since your previous milestone
-- What your biggest challenges and triumphs were at BSE
-- A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE--->
-
-<!--# Modification Milestone
-
-<!--<iframe width="560" height="315" src="https://www.youtube.com/embed/PHOumUvl-Y8?si=3Ckai170BCbswP4G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
-
-<!--## Description
-
+For my modification milestone, I added a total of __ modifications. Here are what they are:
+**Spin feature:** The first modification I added was a spin feature. By tilting the control forward and left, the robot would spin 360 until returned to a different position. I added this modification by adding code in a similar format as the basic gestures, except I added 2 requirements, which were forward and left, instead of just one. I had the robot move by having one side move forward and the other spinning backward. This landed on the result I wanted.
+**Speed control:** The second modification I added was the ability to control the speed based on the degree of the tilt. This was also a change in code, as I added multiple settings so that a steeper tilt would result in a higher speed.
+**Ultrasonic Sensor:** The third modification I added was an ultrasonic sensor. I first wired the sensor in, then tested it, and, finally, added code so it would somewhat control the robot.
 
 ## How it works
 
-## Challenges-->
+**HC-SR04:** The HC-SR04 is an ultrasonic sensor. Ultrasonic referes to sound waves that are ultrasound, meaning their frequency is higher than 20,000 Hz, which is the highest frequency a human can hear. Ultrasonic sensors measure distance by using this. The sensor sends a ultrasonic sound wave through its Trigger pin, and then it measures how much time it takes the sound to bounce back to the Echo pin, which receives the sound. Because distance is speed multiplied by time, ultrasonic sensors are able to calculate the distance by multiplying the speed of sound, which is 340 m/s, by how long the "bounce back" lasts.
+
+![hcsr04](hcsr04.png)
 
 # Final Milestone
 
