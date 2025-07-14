@@ -8,7 +8,7 @@ My project is a gesture controller robot. The robot is controlled by an Arduino 
 
 <!--- **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**-->
 
-![Headstone Image](logo.svg){width=250} 
+![Headstone Image](logo.svg){width=100} 
   
 # Modification Milestone
 
