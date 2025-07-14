@@ -44,7 +44,8 @@ For my third milestone, I had the two components work together. The first step w
 For the hand controller, a key component is the MPU6050, which I have also referred to as the accelerometer. The MPU6050 has four main components, the gyroscope, accelerometer, temperature sensor, and digital motion processor, and is capable of measuring an object's acceleration, temperature, and angular velocity. In my project, its primary use is measure the angle at which it is being held at. This is extremely important because my robot is controlled by gestures. The accelerometer works by detecting the force that is being put on the object. My code allows this data to be converted to a single letter of the following: f (forward), b (backward), r (right), l(left), or s(stop). This information is then sent to the robot through the HC-05, and the robot interprets the letter and decides which direction to go.
 
 <p align="center"><img src="mpu6050.jpg" width="275" height="275">
-<p align="center">figure 10
+
+figure 10
 
 ## Challenges
 
@@ -72,10 +73,12 @@ For the next milestone, I will be adding my modifications.
 The images show the final adjustments I made for my base project. I changed the batteries on each component, as the controller is now powered by a battery pack and the robot is powered by a 9V battery.
 
 <p align="center"><img src="Milestone_3_controller.png" width="400" height="300">
-<p align="center">figure 8
+
+figure 8
 
 <img src="Milestone_3_Robot.png" width="400" height="300"> 
-<p align="center">figure 9
+
+figure 9
 
 
 
