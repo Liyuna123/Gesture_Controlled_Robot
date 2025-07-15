@@ -166,6 +166,7 @@ The images below show the updates I made for milestone 2. The controller was new
   <img src="Milestone_2_Controller.png" width="400" height="300">
   <br>
   <small>figure 5: milestone 2 controller</small>
+</p>
 
 
 
@@ -201,6 +202,7 @@ This is an image of what I achieved in this milestone (refer to Robot Schematics
   <img src="Milestone_1_Robot.png" width="400" height="300">
   <br>
   <small>figure 3: milestone 1 robot</small>
+</p>
 
   # Starter Project Milestone
 
