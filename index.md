@@ -204,7 +204,7 @@ This is an image of what I achieved in this milestone (refer to Robot Schematics
   <small>figure 3: milestone 1 robot</small>
 </p>
 
-  # Starter Project Milestone
+# Starter Project Milestone
 
 <!--**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**-->
 <!---youtube video below -->
