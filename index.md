@@ -676,6 +676,234 @@ Serial.print("\t");
 Serial.println(AcZ); 
 }
 ```
+
+Button modification code
+```c++
+
+#include <SoftwareSerial.h>
+SoftwareSerial BT_Serial(2, 3); // RX, TX
+
+#include <Wire.h> // I2C communication library
+const int buttonPin = 12;
+int buttonstate = 0;
+int count = 0;
+// int start;
+char curr;
+char prev;
+char buf[3];
+
+const int MPU = 0x68; // I2C address of the MPU6050 accelerometer
+int16_t AcX, AcY, AcZ;
+bool memOn;
+
+int flag=0;
+void setup () {// put your setup code here, to run once
+
+Serial.begin(9600); // start serial communication at 9600bps
+BT_Serial.begin(38400);
+
+
+// Initialize interface to the MPU6050
+Wire.begin();
+Wire.beginTransmission(MPU);
+Wire.write(0x6B);
+Wire.write(0);
+Wire.endTransmission(true);
+pinMode(buttonPin, INPUT_PULLUP);
+
+
+
+delay(500);
+}
+
+
+
+
+void loop (){
+    Read_accelerometer(); // Read MPU6050 accelerometer
+    buttonstate = digitalRead(buttonPin);
+    memOn = false;
+    
+    if((buttonstate == LOW)&&(memOn == false)){ //if button is pressed and mem is off, turn mem on
+        memOn = true;
+    }
+    else if((buttonstate == LOW)&&(memOn == true)){ //if button is pressed and mem is on, turn mem off
+        memOn = false;
+    }
+    if(memOn == false){ //if mem is off
+        if((AcX<75)&&(AcX>40)&&(AcY>75)&&(AcY<110)){ //forward
+            //flag=1;
+            BT_Serial.write('f');
+            Serial.println('f');
+            curr = 'f';
+        }
+        if((AcX<40)&&(AcY>75)&&(AcY<110)){ //Forward
+            //flag=1;
+            BT_Serial.write('F');
+            Serial.println('F');
+            curr = 'F';
+        }
+        if((AcX>110)&&(AcX<145)&&(AcY>75)&&(AcY<110)){ //backward
+            // flag=1;
+            BT_Serial.write('b');
+            Serial.println('b');
+        }
+        if((AcX>145)&&(AcY>75)&&(AcY<110)){ //Backward
+            // flag=1;
+            BT_Serial.write('B');
+            Serial.println('B');
+            curr = 'B';
+        }
+        if((AcY<75)&&(AcY>40)){ //left
+            // flag=1;
+            BT_Serial.write('l');
+            Serial.println('l');
+            curr = 'l';
+        }
+        if((AcY<40)&&(AcX>75)&&(AcX<110)){ //Left
+            // flag=1;
+            BT_Serial.write('L');
+            Serial.println('L');
+            curr = 'L';
+        }
+        if((AcY>110)&&(AcY<145)&&(AcX>75)&&(AcX<110)){ //right
+            // flag=1;
+            BT_Serial.write('r');
+            Serial.println('r');
+            curr = 'r';
+        }
+        if((AcY>145)&&(AcX>75)&&(AcX<110)){ //Right
+            // flag=1;
+            BT_Serial.write('R');
+            Serial.println('R');
+            curr = 'R';
+        }
+        if((AcX>70)&&(AcX<120)&&(AcY>70)&&(AcY<120)){ //stop
+            //flag=0;
+            BT_Serial.write('s');
+            Serial.println('s');
+            curr = 's';
+        }
+    }
+    if((curr!=prev)&&(curr!='\n')){ //update buffer
+        buf[count]=curr;
+        count=(count+1)%3;
+        }
+    prev=curr;
+    if(memOn){
+        if (buf[(count-1)%3 == 'F']){ 
+            BT_Serial.write('F');
+        }
+        else if (buf[(count-1)%3 == 'f']){
+            BT_Serial.write('f');
+        }
+        else if (buf[(count-1)%3 == 'B']){
+            BT_Serial.write('B');
+        }
+        else if (buf[(count-1)%3 == 'b']){
+            BT_Serial.write('b');
+        }
+        else if (buf[(count-1)%3 == 'R']){
+            BT_Serial.write('R');
+        }
+        else if (buf[(count-1)%3 == 'r']){
+            BT_Serial.write('r');
+        }
+        else if (buf[(count-1)%3 == 'L']){
+            BT_Serial.write('L');
+        }
+        else if (buf[(count-1)%3 == 'l']){
+            BT_Serial.write('l');
+        }
+        else if (buf[(count-1)%3 == 's']){
+            BT_Serial.write('s');
+        }
+        if (buf[(count-2)%3 == 'F']){
+            BT_Serial.write('F');
+        }
+        else if (buf[(count-2)%3 == 'f']){
+            BT_Serial.write('f');
+        }  
+        else if (buf[(count-2)%3 == 'B']){
+            BT_Serial.write('B');
+        }
+        else if (buf[(count-2)%3 == 'b']){
+            BT_Serial.write('b');
+        }
+        else if (buf[(count-2)%3 == 'R']){
+            BT_Serial.write('R');
+        }
+        else if (buf[(count-2)%3 == 'r']){
+            BT_Serial.write('r');
+        }
+        else if (buf[(count-2)%3 == 'L']){
+            BT_Serial.write('L');
+        }
+        else if (buf[(count-2)%3 == 'l']){
+            BT_Serial.write('l');
+        }
+        else if (buf[(count-2)%3 == 's'])
+            BT_Serial.write('s');
+        }
+        if (buf[(count) == 'F']){
+            BT_Serial.write('F');
+        }
+        else if (buf[(count) == 'f']){
+            BT_Serial.write('f');
+        }
+        else if (buf[(count) == 'B']){
+            BT_Serial.write('B');
+        }
+        else if (buf[(count) == 'b']){
+            BT_Serial.write('b');
+        }
+        else if (buf[(count) == 'R']){
+            BT_Serial.write('R');
+        }
+        else if (buf[(count) == 'r']){
+            BT_Serial.write('r');
+        }
+        else if (buf[(count) == 'L']){
+            BT_Serial.write('L');
+        }
+        else if (buf[(count) == 'l']){
+            BT_Serial.write('l');
+        }
+        else if (buf[(count) == 's']){
+            BT_Serial.write('s');
+        }
+
+    delay(100);
+}
+
+
+
+
+void Read_accelerometer(){
+    // Read the accelerometer data
+Wire.beginTransmission(MPU);
+Wire.write(0x3B); // Start with register 0x3B (ACCEL_XOUT_H)
+Wire.endTransmission(false);
+Wire.requestFrom(MPU, 6, true); // Read 6 registers total, each axis value is stored in 2 registers
+
+
+
+
+AcX = Wire.read() << 8 | Wire.read(); // X-axis value
+AcY = Wire.read() << 8 | Wire.read(); // Y-axis value
+AcZ = Wire.read() << 8 | Wire.read(); // Z-axis value
+
+
+
+
+AcX = map(AcX, -17000, 17000, 0, 180);
+AcY = map(AcY, -17000, 17000, 0, 180);
+AcZ = map(AcZ, -17000, 17000, 0, 180);
+
+
+}
+
+```
 # Bill of Materials
 This is a list of the materials required for my intensive project.
 
