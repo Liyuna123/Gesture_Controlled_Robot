@@ -16,7 +16,8 @@ My project is a gesture controller robot. The robot is controlled by an Arduino 
 
 For my modification milestone, I added a total of __ modifications. Here are what they are:
 
-**Spin feature:** The first modification I added was a spin feature. By tilting the control forward and left, the robot would spin 360 until returned to a different position. I added this modification by adding code in a similar format as the basic gestures, except I added 2 requirements, which were forward and left, instead of just one. I had the robot move by having one side move forward and the other spinning backward. This landed on the result I wanted.
+**Spin feature:** The first modification I added was a spin feature. By spinning the control in a circle, the robot would spin 360. I added this modification by first adding code to the robot to have one side spinning forward and the other spinning backward. This would result in a 360 spin. The controller code was more complicated, because I had to use buffers, which are used to temporarily store information. I had the buffer have 3 slots and remember the last 3 different gestures. If the current gesture is right, and the last three are, in this order, front, left, and back, the robot will do a 360 turn
+
 
 **Speed control:** The second modification I added was the ability to control the speed based on the degree of the tilt. This was also a change in code, as I added multiple settings so that a steeper tilt would result in a higher speed.
 
@@ -31,6 +32,17 @@ For my modification milestone, I added a total of __ modifications. Here are wha
   <br>
   <small> figure 11: an ultrasonic sensor with 4 pins: vcc, trig, echo, and gnd</small>
 </p>
+
+## Challenges
+
+**Spin feature:**
+At first, I had trouble writing code so that the accelerometer could detect a circle. Therefore, at first, I wrote code so that it only had to have a tilt that went forward and left. This was much simpler than creating a buffer and adding many lines of new code. However, after finishing a couple more modifications, I went back and added the memory feature to my code.
+
+**Changing speed:**
+While changing speed, I first set the slower speed 150. I found that this was too slow, and the wheels would just vibrate back and forth instead of spinning. I fixed this by setting the speed higher.
+
+**Ultrasonic Sensor:**
+The first issue I faced was while wiring the Ultrasonic Sensor. This was a challenge because, to be powered, the sensor needs 5V. This was a problem because the 5V pin was occupied in my Arduino board by the HC-05. I wasn't sure what to do because powering it by a seperate power supply would be difficult. However, I remembered that the HC-05 could be powered by either a 5V or a 3.3V. Therefore, I rewired the HC-05 so that it was connected to the 3.3V pin and GND. I was then able to power the sensor. There are two other pins that should be connected, and, after doing some research, I found that they are commonly connected to pins 9 and 10. However, these were occupied as well. This had a simple fix, though, because I remembered that the Software Serial library allows you to set pins.  
 
 # Final Milestone
 
@@ -54,21 +66,14 @@ For the hand controller, a key component is the MPU6050, which I have also refer
 
 ## Challenges
 
-### MPU6050
-I faced an issue with the accelerometer showing 127 on all three axes, which was inaccurate. This means the data was not being recieved by the Arduino, meaning wiring was wrong. I fixed this by first switching out the accelerometer, which didn't work. Therefore, I switched the wiring so that SDA pin would connect to SCL pin of Arduino, not SDA. This is important because the SCL pin is the Serial Clock Line, and it tells Arduino it is ready to send data. On the other hand, the SDA is Serial Data Line, and it sends data. Wiring is important because the SCL pin has to communicate that it is ready to send data before the SDA pin sends it over.
-This fixed the issue.
-### Code
+**MPU6050:**
+I faced an issue with the accelerometer showing 127 on all three axes, which was inaccurate. This means the data was not being recieved by the Arduino, meaning wiring was wrong. I fixed this by first switching out the accelerometer, which didn't work. Therefore, I switched the wiring so that SDA pin would connect to SCL pin of Arduino, not SDA. This is important because the SCL pin is the Serial Clock Line, and it tells Arduino it is ready to send data. On the other hand, the SDA is Serial Data Line, and it sends data. Wiring is important because the SCL pin has to communicate that it is ready to send data before the SDA pin sends it over. This fixed the issue.
 
-**Flags:**
-I firsted changed the code to not include flags, which can be set to 1 and 0. This was unnecessary, so I removed it. This didn't solve the problem, though, so I decided to debug it using the serial monitor. 
-
-**Serial Monitor:**
-By adding a line that says "Serial.println('xy')," I was able to see what data was going through and which caused the problem. I first did this for the controller. I set the serial communication rate to 9600 bps, and the commands printed in the serial monitor, showing data from the accelerometer was going through. Then, I observed the serial monitor in the code for the robot, which was empty. Therefore, I changed the code slightly (by changing BT_Serial to Serial) so that the robot is controlled manually through the serial monitor, instead of through the bluetooth connection. I found that throughout my base project, the serial monitor was the easiest way to debug.
+**Code:**
+I firsted changed the code to not include flags, which can be set to 1 and 0. This was unnecessary, so I removed it. This didn't solve the problem, though, so I decided to debug it using the serial monitor. By adding a line that says "Serial.println('xy')," I was able to see what data was going through and which caused the problem. I first did this for the controller. I set the serial communication rate to 9600 bps, and the commands printed in the serial monitor, showing data from the accelerometer was going through. Then, I observed the serial monitor in the code for the robot, which was empty. Therefore, I changed the code slightly (by changing BT_Serial to Serial) so that the robot is controlled manually through the serial monitor, instead of through the bluetooth connection. I found that throughout my base project, the serial monitor was the easiest way to debug.
 
 ### Battery
-**Controller:** I discovered that my robot only worked while plugged in to my laptop, not with the 9V battery. I reasoned that this would be because the current is higher with my laptop. Therefore, I used a powerbank to power the hand controller for the remainder of the project. 
-
-**Robot:** Throughout this milestone, I had to replace my AA batteries many times. Therefore I decided to use a 9V battery so I wouldn't have to continiously replace the batteries.
+I discovered that my controller only worked while plugged in to my laptop, not with the 9V battery. I reasoned that this would be because the current is higher with my laptop. Therefore, I used a powerbank to power the hand controller for the remainder of the project. As for the robot, I realized that I had to replace my AA batteries many times. Therefore I decided to use a 9V battery so I wouldn't have to continiously replace the batteries. In my milestone video, I only used one 9V battery, but, afterwards, I powered the Arduino and the motor driver with seperate 9V batteries to prevent the motor driver from draining all of the battery
 
 ## Next Step
 For the next milestone, I will be adding my modifications.
@@ -124,29 +129,20 @@ The HC-05s work by, as said earlier, setting a master and slave module. Once the
 
 ## Challenges
 
-### Powering Controller and body
+**Powering Controller and body:**
 The first challenge I faced was when first powering on the controller and body. The first batteries I was using were 1.2 V batteries, which I used 4 of. This totalled to 4.8 V, which was enough to power my motor driver and Arduino Uno, but not the HC-05. I isolated the issue by using a multimeter to measure how much power was given to the HC-05 when the Arduino Uno was plugged in to  my laptop, which powered on the HC-05. The multimeter showed around 6.5 volts, which was much more than the 4.8 that I was given. I decided to switch the batteries to 1.5 V AA batteries which totalled to 6V. While this wasn't as much power as my computer, it was still enough to allow the HC-05 to power on. 
 
-### Pairing HC-05s
+**Pairing HC-05s:**
 The second challenge I faced was when pairing the two HC-05. This was my biggest challenge in the project so far, as it took me a while to figure out. The first issue I faced when sending AT commands. At first, it was unresponsive because the serial baud rate was less than it needed to be. I thought it was because the Arduino Uno prefered 5V, while the bluetooth module prefered 3.3V. I was going to use resistors, but I decided against it because it turned out to be unnecessary. I found out it was the baud rate that was the issue, and, after fixing that, I was able to send the AT commands. That was when I faced my second issue, which was the two modules not pairing together. The commands were correct, so I decided to redo my wiring to make sure it was correct. I found out that the RX and TX pins were swapped. This is important because the RX pin is responsible for recieving, while the TX pin is responsible for transmitting. Therefore, if both pins are transmitting, there will be an error. Fixing this solved the issue.
 
-### Re-Soldering wires
+**Re-Soldering wires:**
 The third challenge I faced was while working on pairing the two modules, the previously soldered wires connecting the Arduino Nano to the battery fell apart. I had to resolder this later in the project. 
 
-### Uploading Code
+**Uploading Code:**
+The first issue with uploading was with the processor. I had set the processor on my laptop when uploading my code was the ATmega328P (Old Bootloader). After playing around with the settings, I found out that the processor for the Arduino Nano was suppposed to be set to ATmega328P. The second issue I faced while uploading the code was that code is uploaded to the 0 and 1 pins on the Arduino, which is otherwise known as the pins set to be TX and RX. Therefore, while uploading the code, I faced an issue. To solve it, I used the SoftwareSerial library and set my RX and TX pins to 2 and 3. 
 
-**Processor:** 
-The first issue with uploading was with the processor. I had set the processor on my laptop when uploading my code was the ATmega328P (Old Bootloader). After playing around with the settings, I found out that the processor for the Arduino Nano was suppposed to be set to ATmega328P. 
-
-**RX and TX pins:**
-The second issue I faced while uploading the code was that code is uploaded to the 0 and 1 pins on the Arduino, which is otherwise known as the pins set to be TX and RX. Therefore, while uploading the code, I faced an issue. To solve it, I used the SoftwareSerial library and set my RX and TX pins to 2 and 3. 
-
-### DC Motors
-**Only One Side working:** 
-For a while, only one side was working. I used a multimeter and found that 0V were reaching the motors on that side. I fixed this by resoldering everything on that side.
-
-**Inconsistency:**
-I found that the inconsistency was because the motors had to be operated by the battery because of my connections.
+**DC Motors:**
+For a while, only one side was working. I used a multimeter and found that 0V were reaching the motors on that side. I fixed this by resoldering everything on that side. There was also an inconsistency, which I found was because the motors had to be operated by the battery because of my connections.
 
 ## Next Step
 
@@ -182,13 +178,13 @@ For my first milestone, I built the base of the robot. It includes 4 DC motors, 
 
 ## Challenges
 
-### Attaching wheel to DC motors
+**Attaching wheel to DC motors:**
 The first challenge I faced was when attaching the wheel to the DC motors. One of them would not stay, so I solved the issue by adding electrical tape to secure it. 
 
-### Soldering wires to motors
+**Soldering wires to motors:**
 The second issue I faced was with soldering the wires to the motors. It was important to be careful when doing that because the soldering iron melted the plastic multiple times. 
 
-### Soldering wires to motor driver
+**Soldering wires to motor driver:**
 The final issue I faced was when soldering the wires to each other to connect to the motor driver. Because they were supposed to be screwed in, it was difficult to control the amount of solder on the wires as to be sure that they can still be screwed in. I had to remove solder multiple times.
 
 ## Next Step
