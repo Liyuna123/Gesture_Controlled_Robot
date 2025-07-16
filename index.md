@@ -115,8 +115,6 @@ One of the key components of this milestone is the motor driver. It works with h
   <small>figure 7: a motor driver with 6 pins and an h bridge</small>
 </p>
 
-figure 7
-
 **HC-05s:**
 The HC-05s work by, as said earlier, setting a master and slave module. Once they are bound together, the HC-05 promptly sends messages between the two modules. 
 
