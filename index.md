@@ -72,7 +72,7 @@ I faced an issue with the accelerometer showing 127 on all three axes, which was
 **Code:**
 I firsted changed the code to not include flags, which can be set to 1 and 0. This was unnecessary, so I removed it. This didn't solve the problem, though, so I decided to debug it using the serial monitor. By adding a line that says "Serial.println('xy')," I was able to see what data was going through and which caused the problem. I first did this for the controller. I set the serial communication rate to 9600 bps, and the commands printed in the serial monitor, showing data from the accelerometer was going through. Then, I observed the serial monitor in the code for the robot, which was empty. Therefore, I changed the code slightly (by changing BT_Serial to Serial) so that the robot is controlled manually through the serial monitor, instead of through the bluetooth connection. I found that throughout my base project, the serial monitor was the easiest way to debug.
 
-### Battery
+**Battery:**
 I discovered that my controller only worked while plugged in to my laptop, not with the 9V battery. I reasoned that this would be because the current is higher with my laptop. Therefore, I used a powerbank to power the hand controller for the remainder of the project. As for the robot, I realized that I had to replace my AA batteries many times. Therefore I decided to use a 9V battery so I wouldn't have to continiously replace the batteries. In my milestone video, I only used one 9V battery, but, afterwards, I powered the Arduino and the motor driver with seperate 9V batteries to prevent the motor driver from draining all of the battery
 
 ## Next Step
