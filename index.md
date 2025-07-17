@@ -23,6 +23,8 @@ For my modification milestone, I added a total of __ modifications. Here are wha
 
 **Ultrasonic Sensor:** The third modification I added was an ultrasonic sensor. I first wired the sensor in, then tested it, and, finally, added code so it would somewhat control the robot.
 
+**Button:** The fourth modification I added was a button that repeats the last 3 movements. I did this by first wiring the button and testing it. Then, I added a buffer, similar to the one used in the spin modification, and had it repeat the last 3 movements if the button was pressed.
+
 ## How it works
 
 **HC-SR04:** The HC-SR04 is an ultrasonic sensor. Ultrasonic referes to sound waves that are ultrasound, meaning their frequency is higher than 20,000 Hz, which is the highest frequency a human can hear. Ultrasonic sensors measure distance by using this. The sensor sends a ultrasonic sound wave through its Trigger pin, and then it measures how much time it takes the sound to bounce back to the Echo pin, which receives the sound. Because distance is speed multiplied by time, ultrasonic sensors are able to calculate the distance by multiplying the speed of sound, which is 340 m/s, by how long the "bounce back" lasts.
@@ -33,9 +35,11 @@ For my modification milestone, I added a total of __ modifications. Here are wha
   <small> figure 11: an ultrasonic sensor with 4 pins: vcc, trig, echo, and gnd</small>
 </p>
 
+**Button:** The button works by being connected to two pins, with one being the ground pin. The Arduino is able to detect when the button is pressed because the ground sends current, and if the button is pressed down current goes through and the second pin receives the current. This is how the Arduino can detect the button. 
+
 ## Challenges
 
-**Spin feature:**
+**Detecting circle:**
 At first, I had trouble writing code so that the accelerometer could detect a circle. Therefore, at first, I wrote code so that it only had to have a tilt that went forward and left. This was much simpler than creating a buffer and adding many lines of new code. However, after finishing a couple more modifications, I went back and added the memory feature to my code.
 
 **Changing speed:**
@@ -43,6 +47,8 @@ While changing speed, I first set the slower speed 150. I found that this was to
 
 **Ultrasonic Sensor:**
 The first issue I faced was while wiring the Ultrasonic Sensor. This was a challenge because, to be powered, the sensor needs 5V. This was a problem because the 5V pin was occupied in my Arduino board by the HC-05. I wasn't sure what to do because powering it by a seperate power supply would be difficult. However, I remembered that the HC-05 could be powered by either a 5V or a 3.3V. Therefore, I rewired the HC-05 so that it was connected to the 3.3V pin and GND. I was then able to power the sensor. There are two other pins that should be connected, and, after doing some research, I found that they are commonly connected to pins 9 and 10. However, these were occupied as well. This had a simple fix, though, because I remembered that the Software Serial library allows you to set pins.  
+
+
 
 # Final Milestone
 
@@ -223,9 +229,9 @@ Using the things I learned in the starter project, I would start working on my i
 - What your plan is to complete your project-->
 
 # Schematics 
-Here is the digital version of the schematics of my controller. The small blue rectangle is the MPU6050, the long rectangle in the upper middle is the Arduino Nano, and the rectangle sticking out is the HC05. It is powered by the battery pack.
+Here is the digital version of the schematics of my controller. The small blue rectangle is the MPU6050, the long rectangle in the upper middle is the Arduino Nano, and the rectangle sticking out is the HC05. There is a black button for my modification. It is powered by the battery pack.
 
-![Controller schematic](gesturecontrolFINAL.png)
+![Controller schematic](gestureschematicbutton.png)
 figure 1
 
 Here is the digital version of the schematics of my robot. There are 4 DC motors, the red motor driver, small HC-05, and the Arduinio Uno. It is powered by a 9V battery.
@@ -449,7 +455,7 @@ void loop() {
 }
 ```
 
-## Final Robot Code
+## Robot Code
 
 This is my final milestone's code for the robot. 
 ```c++
@@ -592,7 +598,7 @@ digitalWrite(in4, LOW); //Left Motor forward Pin
 
 
 ```
-## Final Controller Code
+## Controller Code
 
 This is the final code for my hand controller.
 ```c++
@@ -676,8 +682,8 @@ Serial.print("\t");
 Serial.println(AcZ); 
 }
 ```
-
-Button modification code
+## Modification Milestone code
+### Final controller code with modifications
 ```c++
 
 #include <SoftwareSerial.h>
@@ -690,7 +696,7 @@ int count = 0;
 // int start;
 char curr;
 char prev;
-char buf[3];
+char buf[4];
 
 const int MPU = 0x68; // I2C address of the MPU6050 accelerometer
 int16_t AcX, AcY, AcZ;
@@ -709,7 +715,7 @@ Wire.beginTransmission(MPU);
 Wire.write(0x6B);
 Wire.write(0);
 Wire.endTransmission(true);
-pinMode(buttonPin, INPUT_PULLUP);
+pinMode(buttonPin, INPUT_PULLUP); //define button as input
 
 
 
@@ -724,185 +730,296 @@ void loop (){
     buttonstate = digitalRead(buttonPin);
     memOn = false;
     
-    if((buttonstate == LOW)&&(memOn == false)){ //if button is pressed and mem is off, turn mem on
-        memOn = true;
+    if(buttonstate == LOW){ //if button is pressed and mem is off, turn mem on
+        memOn = !memOn;
+        while (digitalRead(buttonPin) == LOW){
+          delay(500);
+        }
     }
-    else if((buttonstate == LOW)&&(memOn == true)){ //if button is pressed and mem is on, turn mem off
-        memOn = false;
-    }
-    if(memOn == false){ //if mem is off
-        if((AcX<75)&&(AcX>40)&&(AcY>75)&&(AcY<110)){ //forward
+    if(memOn == false){ //if mem is off (Standard)
+        if((AcX<75)&&(AcX>40)&&(AcY>75)&&(AcY<110)){ //forward slow
             //flag=1;
             BT_Serial.write('f');
             Serial.println('f');
-            curr = 'f';
+            curr = 'f'; //set current in buffer as forward slow
         }
-        if((AcX<40)&&(AcY>75)&&(AcY<110)){ //Forward
+        if((AcX<40)&&(AcY>75)&&(AcY<110)){ //Forward fast
             //flag=1;
             BT_Serial.write('F');
             Serial.println('F');
-            curr = 'F';
+            curr = 'F'; //set current is buffer as forward fast
         }
-        if((AcX>110)&&(AcX<145)&&(AcY>75)&&(AcY<110)){ //backward
+        if((AcX>110)&&(AcX<145)&&(AcY>75)&&(AcY<110)){ //backward slow
             // flag=1;
             BT_Serial.write('b');
             Serial.println('b');
+            curr = 'b'; //set current is buffer as backward slow
         }
-        if((AcX>145)&&(AcY>75)&&(AcY<110)){ //Backward
+        if((AcX>145)&&(AcY>75)&&(AcY<110)){ //Backward fast
             // flag=1;
             BT_Serial.write('B');
             Serial.println('B');
-            curr = 'B';
+            curr = 'B'; //set current is buffer as backward fast
         }
-        if((AcY<75)&&(AcY>40)){ //left
+        if((AcY<75)&&(AcY>40)){ //left slow
             // flag=1;
             BT_Serial.write('l');
             Serial.println('l');
-            curr = 'l';
+            curr = 'l'; //set current is buffer as left slow
         }
-        if((AcY<40)&&(AcX>75)&&(AcX<110)){ //Left
+        if((AcY<40)&&(AcX>75)&&(AcX<110)){ //Left fast
             // flag=1;
             BT_Serial.write('L');
             Serial.println('L');
-            curr = 'L';
+            curr = 'L'; //set current is buffer as left fast
         }
-        if((AcY>110)&&(AcY<145)&&(AcX>75)&&(AcX<110)){ //right
+        if((AcY>110)&&(AcY<145)&&(AcX>75)&&(AcX<110)){ //right slow
             // flag=1;
             BT_Serial.write('r');
             Serial.println('r');
-            curr = 'r';
+            curr = 'r'; //set current is buffer as right slow
         }
-        if((AcY>145)&&(AcX>75)&&(AcX<110)){ //Right
+        if((AcY>145)&&(AcX>75)&&(AcX<110)){ //Right fast
             // flag=1;
             BT_Serial.write('R');
             Serial.println('R');
-            curr = 'R';
+            curr = 'R'; //set current is buffer as right fast
         }
         if((AcX>70)&&(AcX<120)&&(AcY>70)&&(AcY<120)){ //stop
             //flag=0;
             BT_Serial.write('s');
-            Serial.println('s');
-            curr = 's';
+            Serial.println('s'); //no update so that the repeating doesn't repeat stop
         }
     }
     if((curr!=prev)&&(curr!='\n')){ //update buffer
         buf[count]=curr;
-        count=(count+1)%3;
-        }
+        count=(count+1)%4;
+    }
     prev=curr;
     if(memOn){
-        if (buf[(count-1)%3 == 'F']){ 
+        for(int i = 0; i<3; i++){ //run for each character
+          if (buf[(count+1+i)%4 ] == 'F'){
             BT_Serial.write('F');
-        }
-        else if (buf[(count-1)%3 == 'f']){
+          }
+          if (buf[(count+1+i)%4] == 'f'){
             BT_Serial.write('f');
-        }
-        else if (buf[(count-1)%3 == 'B']){
+          }
+          if (buf[(count+1+i)%4] == 'B'){
             BT_Serial.write('B');
-        }
-        else if (buf[(count-1)%3 == 'b']){
+          }
+          if (buf[(count+1+i)%4] == 'b'){
             BT_Serial.write('b');
-        }
-        else if (buf[(count-1)%3 == 'R']){
+          }
+          if (buf[(count+1+i)%4] == 'R'){
             BT_Serial.write('R');
-        }
-        else if (buf[(count-1)%3 == 'r']){
+          }
+          if (buf[(count+1+i)%4] == 'r'){
             BT_Serial.write('r');
-        }
-        else if (buf[(count-1)%3 == 'L']){
+          }
+          if (buf[(count+1+i)%4] == 'L'){
             BT_Serial.write('L');
-        }
-        else if (buf[(count-1)%3 == 'l']){
+          }
+          if (buf[(count+1+i)%4] == 'l'){
             BT_Serial.write('l');
-        }
-        else if (buf[(count-1)%3 == 's']){
-            BT_Serial.write('s');
-        }
-        if (buf[(count-2)%3 == 'F']){
-            BT_Serial.write('F');
-        }
-        else if (buf[(count-2)%3 == 'f']){
-            BT_Serial.write('f');
-        }  
-        else if (buf[(count-2)%3 == 'B']){
-            BT_Serial.write('B');
-        }
-        else if (buf[(count-2)%3 == 'b']){
-            BT_Serial.write('b');
-        }
-        else if (buf[(count-2)%3 == 'R']){
-            BT_Serial.write('R');
-        }
-        else if (buf[(count-2)%3 == 'r']){
-            BT_Serial.write('r');
-        }
-        else if (buf[(count-2)%3 == 'L']){
-            BT_Serial.write('L');
-        }
-        else if (buf[(count-2)%3 == 'l']){
-            BT_Serial.write('l');
-        }
-        else if (buf[(count-2)%3 == 's'])
-            BT_Serial.write('s');
-        }
-        if (buf[(count) == 'F']){
-            BT_Serial.write('F');
-        }
-        else if (buf[(count) == 'f']){
-            BT_Serial.write('f');
-        }
-        else if (buf[(count) == 'B']){
-            BT_Serial.write('B');
-        }
-        else if (buf[(count) == 'b']){
-            BT_Serial.write('b');
-        }
-        else if (buf[(count) == 'R']){
-            BT_Serial.write('R');
-        }
-        else if (buf[(count) == 'r']){
-            BT_Serial.write('r');
-        }
-        else if (buf[(count) == 'L']){
-            BT_Serial.write('L');
-        }
-        else if (buf[(count) == 'l']){
-            BT_Serial.write('l');
-        }
-        else if (buf[(count) == 's']){
-            BT_Serial.write('s');
-        }
-
+          }
+          delay(1000);
+        } 
+    }
     delay(100);
 }
-
-
-
-
 void Read_accelerometer(){
     // Read the accelerometer data
 Wire.beginTransmission(MPU);
 Wire.write(0x3B); // Start with register 0x3B (ACCEL_XOUT_H)
 Wire.endTransmission(false);
 Wire.requestFrom(MPU, 6, true); // Read 6 registers total, each axis value is stored in 2 registers
-
-
-
-
 AcX = Wire.read() << 8 | Wire.read(); // X-axis value
 AcY = Wire.read() << 8 | Wire.read(); // Y-axis value
 AcZ = Wire.read() << 8 | Wire.read(); // Z-axis value
-
-
-
-
 AcX = map(AcX, -17000, 17000, 0, 180);
 AcY = map(AcY, -17000, 17000, 0, 180);
 AcZ = map(AcZ, -17000, 17000, 0, 180);
+}
+```
 
+### Final robot code with modifications
 
+```c++
+#include <SoftwareSerial.h>
+SoftwareSerial BT_Serial(2, 3); // RX, TX
+
+#define enA 10//Enable1 L298 Pin enA
+#define in1 9 //Motor1  L298 Pin in1
+#define in2 8 //Motor1  L298 Pin in1
+#define in3 7 //Motor2  L298 Pin in1
+#define in4 6 //Motor2  L298 Pin in1
+#define enB 5 //Enable2 L298 Pin enB
+
+const int echoPin = A2;//echoPin HC-SR04 Pin A2
+const int trigPin = A1;//trigPin HC-SR04 Pin A1
+int count = 0;
+int start;
+char curr;
+char prev;
+char buf[3];
+bool iscircle;
+float timing = 0.0;
+float distance = 0.0;
+
+char bt_data; // variable to receive data from the serial port
+int Speed = 150; //Write The Duty Cycle 0 to 255 Enable Pins for Motor Speed
+
+void setup() { // put your setup code here, to run once
+    Serial.begin(9600); // start serial communication at 9600bps
+    BT_Serial.begin(38400); //start bluetooth communication at 38400 bps
+
+    pinMode(enA, OUTPUT); // declare as output for L298 Pin enA
+    pinMode(in1, OUTPUT); // declare as output for L298 Pin in1
+    pinMode(in2, OUTPUT); // declare as output for L298 Pin in2
+    pinMode(in3, OUTPUT); // declare as output for L298 Pin in3 
+    pinMode(in4, OUTPUT); // declare as output for L298 Pin in4
+    pinMode(enB, OUTPUT); // declare as output for L298 Pin enB
+    pinMode(trigPin,OUTPUT); //declare as output for HC-SR04 trigPin
+    pinMode(echoPin,INPUT); //declare as input for HC-SR04 echoPin
+
+    delay(200);
+}
+void loop(){
+    if(BT_Serial.available() > 0){  //if some date is sent, reads it and saves in state   
+        bt_data = BT_Serial.read();
+        Serial.println(bt_data); 
+        long duration, inches, cm;
+        curr = toupper(bt_data); //all bt_data info is received as uppercase so speed does not matter
+    }
+    digitalWrite(trigPin, LOW); //ultrasonic sensor settings
+    delayMicroseconds(2);
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);      
+    timing = pulseIn(echoPin, HIGH);
+    distance = (timing * 0.034) / 2; //defines distance for ultrasonic sensor
+    iscircle = false;
+    if(curr == 'R'){ //code to update buffer
+      for(int i=0;i<3;i++){
+        if(buf[i] == 'F'){
+          start=i;
+          iscircle = true;
+          break;
+        }
+      }
+      if(iscircle){
+        for(int i=0;i<2;i++){ 
+            if(buf[(start+1)%3] != 'L'){
+                iscircle = false;
+            }
+            if(buf[(start+2)%3] != 'B'){
+                iscircle = false;
+            }
+        }
+      }
+      if(iscircle){
+        Serial.println('c');
+        circle();
+      }
+    }
+    if((curr!=prev)&&(curr!='\n')){
+      buf[count]=curr;
+      count=(count+1)%3;
+    }
+    prev=curr;
+
+    if(distance <= 20){ //if robot is within 20 cm, it will back up
+        forward();
+        delay(300);
+        Stop();
+        delay(600);
+    }
+    else if(bt_data == 'f'){
+        forward();
+        Speed=150;// if the bt_data is 'f' the DC motor will go forward
+        Serial.println('f');
+    }
+    else if(bt_data =='F'){
+        forward();
+        Speed=200;
+        Serial.println('F');
+    }
+    else if(bt_data == 'b'){
+        backward();
+        Speed=150; // if the bt_data is 'b' the motor will go backward
+        Serial.println('b');
+    }
+    else if(bt_data == 'B'){
+        backward();
+        Speed=200; // if the bt_data is 'b' the motor will go backward
+    }
+    else if(bt_data == 'l'){
+        turnLeft();
+        Speed=150; // if the bt_data is 'l' the motor will turn left
+        Serial.println('l');
+    }
+    else if(bt_data == 'L'){
+        turnLeft();
+        Speed=200; // if the bt_data is 'l' the motor will turn left
+        Serial.println('L');
+    }
+    else if(bt_data == 'r'){
+        turnRight();
+        Speed=150; // if the bt_data is 'r' the motor will turn right
+        Serial.println('r');
+    }
+    else if(bt_data == 'F'){
+        turnRight();
+        Speed=200; // if the bt_data is 'r' the motor will turn right
+        Serial.println('F');
+    }
+    else if(bt_data == 's'){
+        Stop();  // if the bt_data 's' the motor will Stop
+        Serial.println('s');
+    } 
+
+    analogWrite(enA, Speed); // Write The Duty Cycle 0 to 255 Enable Pin A for Motor1 Speed
+    analogWrite(enB, Speed); // Write The Duty Cycle 0 to 255 Enable Pin B for Motor2 Speed
+
+    delay(50);
 }
 
+void forward(){  //defines forward
+    digitalWrite(in1, HIGH);  //Right Motor forward Pin
+    digitalWrite(in2, LOW);  //Right Motor backward Pin
+    digitalWrite(in3, LOW);  //Left Motor backward Pin
+    digitalWrite(in4, HIGH); //Left Motor forward Pin
+}
+void backward(){ //defines. backward
+    digitalWrite(in1, LOW);  //Right Motor forward Pin
+    digitalWrite(in2, HIGH); //Right Motor backward Pin
+    digitalWrite(in3, HIGH); //Left Motor backward Pin
+    digitalWrite(in4, LOW);  //Left Motor forward Pin
+}
+void turnRight(){ //defines turnRight
+    digitalWrite(in1, LOW);  //Right Motor forward Pin
+    digitalWrite(in2, HIGH); //Right Motor backward Pin
+    digitalWrite(in3, LOW);  //Left Motor backward Pin
+    digitalWrite(in4, HIGH); //Left Motor forward Pin
+}
+void turnLeft(){ //defines turnLeft
+    digitalWrite(in1, HIGH); //Right Motor forward Pin
+    digitalWrite(in2, LOW);  //Right Motor backward Pin
+    digitalWrite(in3, HIGH); //Left Motor backward Pin
+    digitalWrite(in4, LOW);  //Left Motor forward Pin
+}
+void Stop(){ //defines stop
+    digitalWrite(in1, LOW); //Right Motor forward Pin
+    digitalWrite(in2, LOW); //Right Motor backward Pin
+    digitalWrite(in3, LOW); //Left Motor backward Pin
+    digitalWrite(in4, LOW); //Left Motor forward Pin
+}
+void circle(){ //defines circle
+    digitalWrite(in1, HIGH); //  Right Motor forward Pin 
+    digitalWrite(in2, LOW);  //  Right Motor backward Pin 
+    digitalWrite(in3, LOW);  //  Left Motor backward Pin 
+    digitalWrite(in4, HIGH); //  Left Motor forward Pin 
+}
 ```
 # Bill of Materials
 This is a list of the materials required for my intensive project.
