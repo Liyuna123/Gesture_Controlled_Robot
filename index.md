@@ -47,7 +47,8 @@ While changing speed, I first set the slower speed 150. I found that this was to
 **Ultrasonic Sensor:**
 The first issue I faced was while wiring the Ultrasonic Sensor. This was a challenge because, to be powered, the sensor needs 5V. This was a problem because the 5V pin was occupied in my Arduino board by the HC-05. I wasn't sure what to do because powering it by a seperate power supply would be difficult. However, I remembered that the HC-05 could be powered by either a 5V or a 3.3V. Therefore, I rewired the HC-05 so that it was connected to the 3.3V pin and GND. I was then able to power the sensor. There are two other pins that should be connected, and, after doing some research, I found that they are commonly connected to pins 9 and 10. However, these were occupied as well. This had a simple fix, though, because I remembered that the Software Serial library allows you to set pins.  
 
-
+**Remembering and Repeating Previous Motions:**
+To add the button feature, I added for loops and if statements so that the code would identify which gestures were last used and repeat it. However, at first, when I did this, the robot responded by going in a direction for a second and stopping. I went back and changed the code so that the buffer would not add 'stop' when updating. This was so that the robot didn't use stop as all 3 gestures that it was trying to repeat. However, this did not completely resolve the issue. Later, I added 'delay's so that the gestures wouldn't be repeated consecutively with only milliseconds of running.
 
 # Final Milestone
 
