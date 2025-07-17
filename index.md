@@ -1,4 +1,3 @@
-# Gesture Controlled Robot
 My project is a gesture controller robot. The robot is controlled by an Arduino hand gesture control that can be worn on the hand. The control works through bluetooth, and the robot can turn in all directions with its 4 wheels.
 
 
