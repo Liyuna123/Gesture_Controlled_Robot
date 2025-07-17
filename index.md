@@ -15,7 +15,7 @@ My project is a gesture controller robot. The robot is controlled by an Arduino 
 
 For my modification milestone, I added a total of __ modifications. Here are what they are:
 
-**Spin feature:** The first modification I added was a spin feature. By spinning the control in a circle, the robot would spin 360. I added this modification by first adding code to the robot to have one side spinning forward and the other spinning backward. This would result in a 360 spin. The controller code was more complicated, because I had to use buffers, which are used to temporarily store information. I had the buffer have 3 slots and remember the last 3 different gestures. If the current gesture is right, and the last three are, in this order, front, left, and back, the robot will do a 360 turn
+**Spin feature:** The first modification I added was a spin feature. By spinning the control in a circle, the robot would spin 360. I added this modification by first adding code to the robot to have one side spinning forward and the other spinning backward. This would result in a 360 spin. The controller code was more complicated, because I had to use buffers, which are used to temporarily store information. I had the buffer have 3 slots and remember the last 3 different gestures. If the current gesture is right, and the last three are, in this order, front, left, and back, the robot will do a 360 turn.
 
 
 **Speed control:** The second modification I added was the ability to control the speed based on the degree of the tilt. This was also a change in code, as I added multiple settings so that a steeper tilt would result in a higher speed.
