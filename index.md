@@ -49,6 +49,19 @@ The first issue I faced was while wiring the Ultrasonic Sensor. This was a chall
 **Remembering and Repeating Previous Motions:**
 To add the button feature, I added for loops and if statements so that the code would identify which gestures were last used and repeat it. However, at first, when I did this, the robot responded by going in a direction for a second and stopping. I went back and changed the code so that the buffer would not add 'stop' when updating. This was so that the robot didn't use stop as all 3 gestures that it was trying to repeat. However, this did not completely resolve the issue. Later, I added 'delay's so that the gestures wouldn't be repeated consecutively with only milliseconds of running.
 
+
+## Images 
+<p align="center">
+  <img src="robotwithsensor.png" width="275" height="275">
+  <br>
+  <small>figure 11: robot with sensor </small>
+</p>
+<p align="center">
+  <img src="controllerwithbuttons.png" width="275" height="275">
+  <br>
+  <small>figure 12: controller with buttons </small>
+</p>
+
 # Final Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PHOumUvl-Y8?si=3Ckai170BCbswP4G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -78,7 +91,7 @@ I faced an issue with the accelerometer showing 127 on all three axes, which was
 I firsted changed the code to not include flags, which can be set to 1 and 0. This was unnecessary, so I removed it. This didn't solve the problem, though, so I decided to debug it using the serial monitor. By adding a line that says "Serial.println('xy')," I was able to see what data was going through and which caused the problem. I first did this for the controller. I set the serial communication rate to 9600 bps, and the commands printed in the serial monitor, showing data from the accelerometer was going through. Then, I observed the serial monitor in the code for the robot, which was empty. Therefore, I changed the code slightly (by changing BT_Serial to Serial) so that the robot is controlled manually through the serial monitor, instead of through the bluetooth connection. I found that throughout my base project, the serial monitor was the easiest way to debug.
 
 **Battery:**
-I discovered that my controller only worked while plugged in to my laptop, not with the 9V battery. I reasoned that this would be because the current is higher with my laptop. Therefore, I used a powerbank to power the hand controller for the remainder of the project. As for the robot, I realized that I had to replace my AA batteries many times. Therefore I decided to use a 9V battery so I wouldn't have to continiously replace the batteries. In my milestone video, I only used one 9V battery, but, afterwards, I powered the Arduino and the motor driver with seperate 9V batteries to prevent the motor driver from draining all of the battery
+I discovered that my controller only worked while plugged in to my laptop, not with the 9V battery. I reasoned that this would be because the current is higher with my laptop. Therefore, I used a powerbank to power the hand controller for the remainder of the project. As for the robot, I realized that I had to replace my AA batteries many times. Therefore I decided to use a 9V battery so I wouldn't have to continiously replace the batteries. In my milestone video, I only used one 9V battery, but, afterwards, I powered the Arduino and the motor driver with seperate 9V batteries to prevent the motor driver from draining all of the battery.
 
 ## Next Step
 For the next milestone, I will be adding my modifications.
