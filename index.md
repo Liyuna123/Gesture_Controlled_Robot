@@ -693,6 +693,9 @@ SoftwareSerial BT_Serial(2, 3); // RX, TX
 const int buttonPin = 12;
 int buttonstate = 0;
 int count = 0;
+const int circlebutton = 11;
+int buttonState = 0;
+bool circle;
 // int start;
 char curr;
 char prev;
@@ -716,6 +719,7 @@ Wire.write(0x6B);
 Wire.write(0);
 Wire.endTransmission(true);
 pinMode(buttonPin, INPUT_PULLUP); //define button as input
+pinMode(circlebutton, INPUT_PULLUP); //define button as input
 
 
 
@@ -729,13 +733,27 @@ void loop (){
     Read_accelerometer(); // Read MPU6050 accelerometer
     buttonstate = digitalRead(buttonPin);
     memOn = false;
+    buttonState = digitalRead(circlebutton);
+    circle = false;
     
     if(buttonstate == LOW){ //if button is pressed and mem is off, turn mem on
         memOn = !memOn;
         while (digitalRead(buttonPin) == LOW){
-          delay(500);
+          delay(200);
         }
     }
+    if(buttonState == LOW){ //if button is pressed and mem is off, turn mem on
+        circle = !circle;
+        while (digitalRead(circlebutton) == LOW){
+          delay(200);
+        }
+    }
+    if(circle){
+      BT_Serial.write('c');
+      Serial.println('c');
+      delay(5000);
+    }
+    if(circle == false){
     if(memOn == false){ //if mem is off (Standard)
         if((AcX<75)&&(AcX>40)&&(AcY>75)&&(AcY<110)){ //forward slow
             //flag=1;
@@ -822,8 +840,9 @@ void loop (){
           if (buf[(count+1+i)%4] == 'l'){
             BT_Serial.write('l');
           }
-          delay(1000);
+          delay(700);
         } 
+    }
     }
     delay(100);
 }
@@ -839,6 +858,7 @@ AcZ = Wire.read() << 8 | Wire.read(); // Z-axis value
 AcX = map(AcX, -17000, 17000, 0, 180);
 AcY = map(AcY, -17000, 17000, 0, 180);
 AcZ = map(AcZ, -17000, 17000, 0, 180);
+}
 }
 ```
 
@@ -977,6 +997,10 @@ void loop(){
         Stop();  // if the bt_data 's' the motor will Stop
         Serial.println('s');
     } 
+    else if(bt_data == 'c'){
+        circle();
+        Serial.println('c');
+    }
 
     analogWrite(enA, Speed); // Write The Duty Cycle 0 to 255 Enable Pin A for Motor1 Speed
     analogWrite(enB, Speed); // Write The Duty Cycle 0 to 255 Enable Pin B for Motor2 Speed
@@ -1017,8 +1041,8 @@ void Stop(){ //defines stop
 void circle(){ //defines circle
     digitalWrite(in1, HIGH); //  Right Motor forward Pin 
     digitalWrite(in2, LOW);  //  Right Motor backward Pin 
-    digitalWrite(in3, LOW);  //  Left Motor backward Pin 
-    digitalWrite(in4, HIGH); //  Left Motor forward Pin 
+    digitalWrite(in3, HIGH);  //  Left Motor backward Pin 
+    digitalWrite(in4, LOW); //  Left Motor forward Pin 
 }
 ```
 # Bill of Materials
