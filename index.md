@@ -231,7 +231,7 @@ Using the things I learned in the starter project, I would start working on my i
 # Schematics 
 Here is the digital version of the schematics of my controller. The small blue rectangle is the MPU6050, the long rectangle in the upper middle is the Arduino Nano, and the rectangle sticking out is the HC05. There is a black button for my modification. It is powered by the battery pack.
 
-![Controller schematic](gestureschematicbutton.png)
+![Controller schematic](twobuttonschematic.png)
 figure 1
 
 Here is the digital version of the schematics of my robot. There are 4 DC motors, the red motor driver, small HC-05, and the Arduinio Uno. It is powered by a 9V battery.
