@@ -251,7 +251,7 @@ Here is the digital version of the schematics of my controller. The small blue r
 figure 1
 
 Here is the digital version of the schematics of my robot. There are 4 DC motors, the red motor driver, small HC-05, and the Arduinio Uno. It is powered by a 9V battery.
-![Robot schematic](robotschematicFINAL.png)
+![Robot schematic](rswus.png)
 figure 2
 <!--Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser.-->
 
