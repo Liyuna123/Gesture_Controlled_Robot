@@ -701,7 +701,6 @@ Serial.println(AcZ);
 ## Modification Milestone code
 ### Final controller code with modifications
 ```c++
-
 #include <SoftwareSerial.h>
 SoftwareSerial BT_Serial(2, 3); // RX, TX
 
@@ -715,7 +714,7 @@ bool circle;
 // int start;
 char curr;
 char prev;
-char buf[4];
+char buf[5];
 
 const int MPU = 0x68; // I2C address of the MPU6050 accelerometer
 int16_t AcX, AcY, AcZ;
@@ -781,7 +780,7 @@ void loop (){
             //flag=1;
             BT_Serial.write('F');
             Serial.println('F');
-            curr = 'F'; //set current is buffer as forward fast
+            curr = 'f'; //set current is buffer as forward fast
         }
         if((AcX>110)&&(AcX<145)&&(AcY>75)&&(AcY<110)){ //backward slow
             // flag=1;
@@ -793,7 +792,7 @@ void loop (){
             // flag=1;
             BT_Serial.write('B');
             Serial.println('B');
-            curr = 'B'; //set current is buffer as backward fast
+            curr = 'b'; //set current is buffer as backward fast
         }
         if((AcY<75)&&(AcY>40)){ //left slow
             // flag=1;
@@ -805,7 +804,7 @@ void loop (){
             // flag=1;
             BT_Serial.write('L');
             Serial.println('L');
-            curr = 'L'; //set current is buffer as left fast
+            curr = 'l'; //set current is buffer as left fast
         }
         if((AcY>110)&&(AcY<145)&&(AcX>75)&&(AcX<110)){ //right slow
             // flag=1;
@@ -817,7 +816,7 @@ void loop (){
             // flag=1;
             BT_Serial.write('R');
             Serial.println('R');
-            curr = 'R'; //set current is buffer as right fast
+            curr = 'r'; //set current is buffer as right fast
         }
         if((AcX>70)&&(AcX<120)&&(AcY>70)&&(AcY<120)){ //stop
             //flag=0;
@@ -827,33 +826,33 @@ void loop (){
     }
     if((curr!=prev)&&(curr!='\n')){ //update buffer
         buf[count]=curr;
-        count=(count+1)%4;
+        count=(count+1)%5;
     }
     prev=curr;
     if(memOn){
-        for(int i = 0; i<3; i++){ //run for each character
-          if (buf[(count+1+i)%4 ] == 'F'){
+        for(int i = 0; i<4; i++){ //run for each character
+          if (buf[(count+1+i)%5 ] == 'F'){
             BT_Serial.write('F');
           }
-          if (buf[(count+1+i)%4] == 'f'){
+          if (buf[(count+1+i)%5] == 'f'){
             BT_Serial.write('f');
           }
-          if (buf[(count+1+i)%4] == 'B'){
+          if (buf[(count+1+i)%5] == 'B'){
             BT_Serial.write('B');
           }
-          if (buf[(count+1+i)%4] == 'b'){
+          if (buf[(count+1+i)%5] == 'b'){
             BT_Serial.write('b');
           }
-          if (buf[(count+1+i)%4] == 'R'){
+          if (buf[(count+1+i)%5] == 'R'){
             BT_Serial.write('R');
           }
-          if (buf[(count+1+i)%4] == 'r'){
+          if (buf[(count+1+i)%5] == 'r'){
             BT_Serial.write('r');
           }
-          if (buf[(count+1+i)%4] == 'L'){
+          if (buf[(count+1+i)%5] == 'L'){
             BT_Serial.write('L');
           }
-          if (buf[(count+1+i)%4] == 'l'){
+          if (buf[(count+1+i)%5] == 'l'){
             BT_Serial.write('l');
           }
           delay(700);
@@ -875,7 +874,8 @@ AcX = map(AcX, -17000, 17000, 0, 180);
 AcY = map(AcY, -17000, 17000, 0, 180);
 AcZ = map(AcZ, -17000, 17000, 0, 180);
 }
-}
+
+
 ```
 
 ### Final robot code with modifications
