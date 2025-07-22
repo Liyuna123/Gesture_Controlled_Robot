@@ -38,7 +38,7 @@ For my modification milestone, I added a total of 4 modifications. Here are what
 
 **Button:** The button works by being connected to two pins, with one being the ground pin. The Arduino is able to detect when the button is pressed because the ground sends current, and if the button is pressed down current goes through and the second pin receives the current. This is how the Arduino can detect the button. 
 <p align="center">
-  <img src="pushbutton.png" width="400" height="150">
+  <img src="pushbutton.png" width="400" height="225">
   <br>
   <small> figure 11: an ultrasonic sensor with 4 pins: vcc, trig, echo, and gnd</small>
 </p>
