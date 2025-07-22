@@ -104,7 +104,7 @@ I firsted changed the code to not include flags, which can be set to 1 and 0. Th
 I discovered that my controller only worked while plugged in to my laptop, not with the 9V battery. I reasoned that this would be because the current is higher with my laptop. Therefore, I used a powerbank to power the hand controller for the remainder of the project. As for the robot, I realized that I had to replace my AA batteries many times. Therefore I decided to use a 9V battery so I wouldn't have to continiously replace the batteries. In my milestone video, I only used one 9V battery, but, afterwards, I powered the Arduino and the motor driver with seperate 9V batteries to prevent the motor driver from draining all of the battery.
 
 ## Next Step
-For the next milestone, I will be adding my modifications.
+For the next milestone, I will be adding my modifications, which are a circle gesture, option to repeat previous gestures, ultrasonic sensor for collision prevention, and speed control.
 
 ## Images
 
