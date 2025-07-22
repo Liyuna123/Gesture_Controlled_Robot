@@ -19,11 +19,12 @@ For my modification milestone, I added a total of 4 modifications. Here are what
 
 **Spin feature:** The first modification I added was a spin feature. By spinning the control in a circle, the robot would spin 360. I added this modification by first adding code to the robot to have one side spinning forward and the other spinning backward. This would result in a 360 spin. The controller code was more complicated, because I had to use buffers, which are used to temporarily store information. I had the buffer have 3 slots and remember the last 3 different gestures. If the current gesture is right, and the last three are, in this order, front, left, and back, the robot will do a 360 turn. While this worked, it was harder to control, so I added a button that would make it spin in a circle as well.
 
+**Button:** The fourth modification I added was a button that repeats the last 3 movements. I did this by first wiring the button and testing it. Then, I added a buffer, similar to the one used in the spin modification, and had it repeat the last 3 movements if the button was pressed.
+
 **Speed control:** The second modification I added was the ability to control the speed based on the degree of the tilt. This was also a change in code, as I added multiple settings so that a steeper tilt would result in a higher speed.
 
 **Ultrasonic Sensor:** The third modification I added was an ultrasonic sensor. I first wired the sensor in, then tested it, and, finally, added code so it would somewhat control the robot.
 
-**Button:** The fourth modification I added was a button that repeats the last 3 movements. I did this by first wiring the button and testing it. Then, I added a buffer, similar to the one used in the spin modification, and had it repeat the last 3 movements if the button was pressed.
 
 ## How it works
 
@@ -36,6 +37,11 @@ For my modification milestone, I added a total of 4 modifications. Here are what
 </p>
 
 **Button:** The button works by being connected to two pins, with one being the ground pin. The Arduino is able to detect when the button is pressed because the ground sends current, and if the button is pressed down current goes through and the second pin receives the current. This is how the Arduino can detect the button. 
+<p align="center">
+  <img src="pushbutton.png" width="400" height="150">
+  <br>
+  <small> figure 11: an ultrasonic sensor with 4 pins: vcc, trig, echo, and gnd</small>
+</p>
 
 ## Challenges
 
