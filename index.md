@@ -40,7 +40,7 @@ For my modification milestone, I added a total of 4 modifications. Here are what
 <p align="center">
   <img src="pushbutton.png" width="400" height="225">
   <br>
-  <small> figure 11: an ultrasonic sensor with 4 pins: vcc, trig, echo, and gnd</small>
+  <small> figure 12: diagram describing how a pushbutton works</small>
 </p>
 
 ## Challenges
