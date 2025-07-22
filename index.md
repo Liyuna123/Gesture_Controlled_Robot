@@ -711,20 +711,20 @@ Serial.println(AcZ);
 SoftwareSerial BT_Serial(2, 3); // RX, TX
 
 #include <Wire.h> // I2C communication library
-const int buttonPin = 12;
-int buttonstate = 0;
-int count = 0;
-const int circlebutton = 11;
+const int buttonPin = 12; //button pin: A12
+int buttonstate = 0; 
+int count = 0; //count starts at 0
+const int circlebutton = 11; //circlebutton: A11
 int buttonState = 0;
-bool circle;
+bool circle; //sets circle as a booelan that can be true or false
 // int start;
 char curr;
 char prev;
-char buf[5];
+char buf[5]; //sets number of characters in buffer
 
 const int MPU = 0x68; // I2C address of the MPU6050 accelerometer
-int16_t AcX, AcY, AcZ;
-bool memOn;
+int16_t AcX, AcY, AcZ; 
+bool memOn; //sets memOn as a boolean that can be true or false
 
 int flag=0;
 void setup () {// put your setup code here, to run once
@@ -741,9 +741,6 @@ Wire.write(0);
 Wire.endTransmission(true);
 pinMode(buttonPin, INPUT_PULLUP); //define button as input
 pinMode(circlebutton, INPUT_PULLUP); //define button as input
-
-
-
 delay(500);
 }
 
@@ -752,116 +749,104 @@ delay(500);
 
 void loop (){
     Read_accelerometer(); // Read MPU6050 accelerometer
-    buttonstate = digitalRead(buttonPin);
-    memOn = false;
-    buttonState = digitalRead(circlebutton);
-    circle = false;
+    buttonstate = digitalRead(buttonPin); //initialize memory button
+    memOn = false; //memOn is false when the code is first run
+    buttonState = digitalRead(circlebutton); //initialize circle button
+    circle = false; //circle is false when the code is first run
     
-    if(buttonstate == LOW){ //if button is pressed and mem is off, turn mem on
-        memOn = !memOn;
+    if(buttonstate == LOW){ //if button is pressed:
+        memOn = !memOn; //turn memOn to the state it is not (false--> true, true--> false)
         while (digitalRead(buttonPin) == LOW){
-          delay(200);
+          delay(200); //wait for the button to be not pressed
         }
     }
-    if(buttonState == LOW){ //if button is pressed and mem is off, turn mem on
-        circle = !circle;
+    if(buttonState == LOW){ //if button is pressed
+        circle = !circle; //turn circle to state it is not
         while (digitalRead(circlebutton) == LOW){
-          delay(200);
+          delay(200); //wait for button to be not pressed
         }
     }
-    if(circle){
-      BT_Serial.write('c');
-      Serial.println('c');
-      delay(5000);
+    if(circle){ //if circle is true (button was pressed)
+      BT_Serial.write('c'); //send circle to robot
+      Serial.println('c'); //print circle in serial monitor
+      delay(2000); //wait 2s
     }
     if(circle == false){
     if(memOn == false){ //if mem is off (Standard)
         if((AcX<75)&&(AcX>40)&&(AcY>75)&&(AcY<110)){ //forward slow
             //flag=1;
-            BT_Serial.write('f');
-            Serial.println('f');
+            BT_Serial.write('f'); //send forward to robot
+            Serial.println('f'); //print forward in serial monitor
             curr = 'f'; //set current in buffer as forward slow
         }
         if((AcX<40)&&(AcY>75)&&(AcY<110)){ //Forward fast
             //flag=1;
-            BT_Serial.write('F');
-            Serial.println('F');
+            BT_Serial.write('F'); //send Forward to robot
+            Serial.println('F');//print Forward in serial monitor
             curr = 'f'; //set current is buffer as forward fast
         }
         if((AcX>110)&&(AcX<145)&&(AcY>75)&&(AcY<110)){ //backward slow
             // flag=1;
-            BT_Serial.write('b');
+            BT_Serial.write('b'); //send backward to robot
             Serial.println('b');
             curr = 'b'; //set current is buffer as backward slow
         }
         if((AcX>145)&&(AcY>75)&&(AcY<110)){ //Backward fast
             // flag=1;
-            BT_Serial.write('B');
+            BT_Serial.write('B');//send Backward to robot
             Serial.println('B');
             curr = 'b'; //set current is buffer as backward fast
         }
         if((AcY<75)&&(AcY>40)){ //left slow
             // flag=1;
-            BT_Serial.write('l');
+            BT_Serial.write('l');//send left to robot
             Serial.println('l');
             curr = 'l'; //set current is buffer as left slow
         }
         if((AcY<40)&&(AcX>75)&&(AcX<110)){ //Left fast
             // flag=1;
-            BT_Serial.write('L');
+            BT_Serial.write('L');//send left to robot
             Serial.println('L');
             curr = 'l'; //set current is buffer as left fast
         }
         if((AcY>110)&&(AcY<145)&&(AcX>75)&&(AcX<110)){ //right slow
             // flag=1;
-            BT_Serial.write('r');
+            BT_Serial.write('r');//send right to robot
             Serial.println('r');
             curr = 'r'; //set current is buffer as right slow
         }
         if((AcY>145)&&(AcX>75)&&(AcX<110)){ //Right fast
             // flag=1;
-            BT_Serial.write('R');
+            BT_Serial.write('R');//send Right to robot
             Serial.println('R');
             curr = 'r'; //set current is buffer as right fast
         }
         if((AcX>70)&&(AcX<120)&&(AcY>70)&&(AcY<120)){ //stop
             //flag=0;
-            BT_Serial.write('s');
+            BT_Serial.write('s');//send stop to robot
             Serial.println('s'); //no update so that the repeating doesn't repeat stop
         }
     }
     if((curr!=prev)&&(curr!='\n')){ //update buffer
-        buf[count]=curr;
+        buf[count]=curr; //latest character in buffer is the current one
         count=(count+1)%5;
     }
-    prev=curr;
+    prev=curr; //current becomes previous to open space for new character
     if(memOn){
         for(int i = 0; i<4; i++){ //run for each character
-          if (buf[(count+1+i)%5 ] == 'F'){
-            BT_Serial.write('F');
+          if (buf[(count+1+i)%5] == 'f'){//if any character is f
+            BT_Serial.write('f'); //go f
           }
-          if (buf[(count+1+i)%5] == 'f'){
-            BT_Serial.write('f');
+          if (buf[(count+1+i)%5] == 'b'){//if any character is b
+            BT_Serial.write('b');//go b
           }
-          if (buf[(count+1+i)%5] == 'B'){
-            BT_Serial.write('B');
+          if (buf[(count+1+i)%5] == 'r'){//if any character is r
+            BT_Serial.write('r');//go f
           }
-          if (buf[(count+1+i)%5] == 'b'){
-            BT_Serial.write('b');
+          if (buf[(count+1+i)%5] == 'l'){//if any character is l
+            BT_Serial.write('l');//go l
           }
-          if (buf[(count+1+i)%5] == 'R'){
-            BT_Serial.write('R');
-          }
-          if (buf[(count+1+i)%5] == 'r'){
-            BT_Serial.write('r');
-          }
-          if (buf[(count+1+i)%5] == 'L'){
-            BT_Serial.write('L');
-          }
-          if (buf[(count+1+i)%5] == 'l'){
-            BT_Serial.write('l');
-          }
-          delay(700);
+          delay(700);//play for 7 milliseconds
         } 
     }
     }
@@ -869,16 +854,16 @@ void loop (){
 }
 void Read_accelerometer(){
     // Read the accelerometer data
-Wire.beginTransmission(MPU);
-Wire.write(0x3B); // Start with register 0x3B (ACCEL_XOUT_H)
-Wire.endTransmission(false);
-Wire.requestFrom(MPU, 6, true); // Read 6 registers total, each axis value is stored in 2 registers
-AcX = Wire.read() << 8 | Wire.read(); // X-axis value
-AcY = Wire.read() << 8 | Wire.read(); // Y-axis value
-AcZ = Wire.read() << 8 | Wire.read(); // Z-axis value
-AcX = map(AcX, -17000, 17000, 0, 180);
-AcY = map(AcY, -17000, 17000, 0, 180);
-AcZ = map(AcZ, -17000, 17000, 0, 180);
+    Wire.beginTransmission(MPU);
+    Wire.write(0x3B); // Start with register 0x3B (ACCEL_XOUT_H)
+    Wire.endTransmission(false);
+    Wire.requestFrom(MPU, 6, true); // Read 6 registers total, each axis value is stored in 2 registers
+    AcX = Wire.read() << 8 | Wire.read(); // X-axis value
+    AcY = Wire.read() << 8 | Wire.read(); // Y-axis value
+    AcZ = Wire.read() << 8 | Wire.read(); // Z-axis value
+    AcX = map(AcX, -17000, 17000, 0, 180);
+    AcY = map(AcY, -17000, 17000, 0, 180);
+    AcZ = map(AcZ, -17000, 17000, 0, 180);
 }
 
 
